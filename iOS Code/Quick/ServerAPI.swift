@@ -26,6 +26,9 @@ class ServerAPI: NSObject {
                 print(response.response as Any) // URL response
                 print(response.result.value as Any)   // result of response serialization
         }
+    }
+    
+    func sendLatestLocation() {
         
     }
 }

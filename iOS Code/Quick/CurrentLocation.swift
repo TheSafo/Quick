@@ -25,7 +25,9 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Got location update! \(locations[0])")
         currentLocation = locations[0]
         //SERVER STUFF
+        ServerAPI.sharedInstance.sendLatestLocation()
     }
 }

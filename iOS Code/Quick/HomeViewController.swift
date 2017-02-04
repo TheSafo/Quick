@@ -65,6 +65,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func orderButtonPressed() {
         print("Order button pressed")
+        
+        let nextVC = NewOrderViewController()
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 

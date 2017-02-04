@@ -19,6 +19,7 @@ class ServerAPI: NSObject {
             return UIDevice.current.identifierForVendor!.uuidString
         }
     }
+
     var name: String?
     var notificationToken: String?
     
@@ -47,7 +48,7 @@ class ServerAPI: NSObject {
     func sendLatestLocation() {
         let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate ?? CLLocationCoordinate2DMake(100, 100)
         
-        let params = ["id":deviceID,
+        let params = ["id": deviceID,
                       "lat":currentLocation.latitude,
                       "long":currentLocation.longitude] as [String : Any]
         

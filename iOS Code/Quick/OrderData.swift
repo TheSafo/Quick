@@ -31,7 +31,7 @@ class OrderData {
     }
     
     func getDistanceToPickUp()->CLLocationDistance {
-        return pickUpLocation.distance(from: CurrentLocation.sharedInstance.currentLocation!)
+        return pickUpLocation.distance(from: CurrentLocation.sharedInstance.currentLocation ?? CLLocation(latitude: 100.001, longitude: 100.001))
     }
     
     func claimOrder()->Bool {

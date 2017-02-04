@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,10 +32,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             make.edges.equalTo(view)
         }
         
-        for _ in 0..<12 {
-//            let bsData = OrderData(description: "Desc "+String.randomString(length: 2),
-//                                   person: "Sender "+String.randomString(length: 2), destName: "Dest "+String.randomString(length: 2))
-//            availableOrders.append(bsData)
+        for i in 0..<12 {
+            let bsLoc = CLLocation(latitude: 100, longitude: 100)
+            let bsData = OrderData(description: "Desc \(i)", requestID: "", price: 12, pickUpLocation: bsLoc, dropOffLocation: bsLoc)
+            availableOrders.append(bsData)
         }
     }
 

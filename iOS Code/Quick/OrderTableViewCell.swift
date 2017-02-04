@@ -13,35 +13,29 @@ import SnapKit
 class OrderTableViewCell: UITableViewCell {
     
     let distanceLbl = UILabel()
-    let senderLbl = UILabel()
-    let placeLbl = UILabel()
+    let descriptionLbl = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         //Configure Views
+        distanceLbl.textAlignment = .right
         
         //Add Subviews
         contentView.addSubview(distanceLbl)
-        contentView.addSubview(senderLbl)
-        contentView.addSubview(placeLbl)
+        contentView.addSubview(descriptionLbl)
         
         //Constraints
         distanceLbl.snp.makeConstraints { (make) in
-            make.width.equalTo(40)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.2)
+            make.right.bottom.equalTo(contentView).offset(-2.5)
             make.height.equalTo(30)
-            make.right.bottom.equalTo(contentView)
         }
         
-        senderLbl.snp.makeConstraints { (make) in
-            make.left.bottom.equalTo(contentView)
+        
+        descriptionLbl.snp.makeConstraints { (make) in
+            make.left.top.bottom.equalTo(contentView)
             make.right.equalTo(distanceLbl.snp.left)
-            make.top.equalTo(distanceLbl)
-        }
-        
-        placeLbl.snp.makeConstraints { (make) in
-            make.left.top.right.equalTo(contentView)
-            make.bottom.equalTo(distanceLbl.snp.top)
         }
     }
     
@@ -58,9 +52,11 @@ class OrderTableViewCell: UITableViewCell {
     
     func setOrderData(_ data: OrderData) {
         
-//        distanceLbl.text = "\(data.getDistance())"
-//        senderLbl.text = data.person
-//        placeLbl.text = data.destName
+        let str = String(format: "%.0f m", data.getDistanceToPickUp())
+        distanceLbl.text = str
+        
+        descriptionLbl.text = data.description
+        //        placeLbl.text = data.destName
     }
 
 }

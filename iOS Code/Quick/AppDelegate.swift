@@ -17,10 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-
-        window = UIWindow(frame: UIScreen.main.bounds)
         let rootVC = HomeViewController()
         let navVC = UINavigationController(rootViewController: rootVC)
+        
+        let actualBtn = UIButton(type: .custom)
+        actualBtn.setImage(UIImage(named: "user")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        actualBtn.addTarget(rootVC, action: #selector(rootVC.profButtonPressed), for: .touchUpInside)
+        actualBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        rootVC.navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: actualBtn)]
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
         

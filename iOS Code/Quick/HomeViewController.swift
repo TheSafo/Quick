@@ -57,6 +57,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
+    func profButtonPressed() {
+        print("Prof button pressed")
+    }
 }
 
 extension String {

@@ -13,6 +13,7 @@
 		4306C8EB1E46392E00D341F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8EA1E46392E00D341F6 /* Assets.xcassets */; };
 		4306C8EE1E46392E00D341F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8EC1E46392E00D341F6 /* LaunchScreen.storyboard */; };
 		4AA8341BBA0217A3EF4B952A /* Pods_Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283758EBA1D141BD7C202EE5 /* Pods_Quick.framework */; };
+		63C173F81E464A1F00CCCE9F /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4306C8EA1E46392E00D341F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4306C8ED1E46392E00D341F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4306C8EF1E46392E00D341F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		AD3A25168AE2B2ADB6A360E7 /* Pods-Quick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick/Pods-Quick.release.xcconfig"; sourceTree = "<group>"; };
 		C05ADE1E7C8EDAF2168F9A97 /* Pods-Quick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick/Pods-Quick.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				4306C8EA1E46392E00D341F6 /* Assets.xcassets */,
 				4306C8EC1E46392E00D341F6 /* LaunchScreen.storyboard */,
 				4306C8EF1E46392E00D341F6 /* Info.plist */,
+				63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */,
 			);
 			path = Quick;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C173F81E464A1F00CCCE9F /* NewOrderViewController.swift in Sources */,
 				4306C8E61E46392E00D341F6 /* ViewController.swift in Sources */,
 				4306C8E41E46392E00D341F6 /* AppDelegate.swift in Sources */,
 			);
@@ -343,6 +347,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.JakeSafo.Quick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -357,6 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.JakeSafo.Quick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -379,6 +385,7 @@
 				4306C8F41E46392E00D341F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

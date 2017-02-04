@@ -31,17 +31,17 @@ class OrderData {
     }
     
     func getDistanceToPickUp()->CLLocationDistance {
-        return pickUpLocation.distance(from: CurrentLocation.sharedInstance.currentLocation!);
+        return pickUpLocation.distance(from: CurrentLocation.sharedInstance.currentLocation!)
     }
     
     func claimOrder()->Bool {
         if self.claimed == false {
-            self.claimed = true;
+            self.claimed = true
             
-            self.acceptorID = UUID().uuidString;
+            self.acceptorID = UUID().uuidString
             //INSERT SERVER STUFF
-            return true;
+            return true
         }
-        return false;
+        return false
     }
 }

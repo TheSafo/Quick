@@ -20,11 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootVC = HomeViewController()
         let navVC = UINavigationController(rootViewController: rootVC)
         
-        let actualBtn = UIButton(type: .custom)
-        actualBtn.setImage(UIImage(named: "user")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        actualBtn.addTarget(rootVC, action: #selector(rootVC.profButtonPressed), for: .touchUpInside)
-        actualBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        rootVC.navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: actualBtn)]
+        let profBtn = UIButton(type: .custom)
+        profBtn.setImage(UIImage(named: "user")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        profBtn.addTarget(rootVC, action: #selector(rootVC.profButtonPressed), for: .touchUpInside)
+        profBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        profBtn.imageEdgeInsets = UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5)
+        rootVC.navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: profBtn)]
+        
+        let newOrderBtn = UIButton(type: .custom)
+        newOrderBtn.setImage(UIImage(named: "add")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        newOrderBtn.addTarget(rootVC, action: #selector(rootVC.orderButtonPressed), for: .touchUpInside)
+        newOrderBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        newOrderBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+        rootVC.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: newOrderBtn)]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navVC

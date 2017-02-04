@@ -14,6 +14,7 @@ class OrderTableViewCell: UITableViewCell {
     
     let distanceLbl = UILabel()
     let descriptionLbl = UILabel()
+    let priceLbl = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,9 +22,12 @@ class OrderTableViewCell: UITableViewCell {
         //Configure Views
         distanceLbl.textAlignment = .right
         
+        priceLbl.textColor = .green
+        
         //Add Subviews
         contentView.addSubview(distanceLbl)
         contentView.addSubview(descriptionLbl)
+        contentView.addSubview(priceLbl)
         
         //Constraints
         distanceLbl.snp.makeConstraints { (make) in
@@ -32,9 +36,14 @@ class OrderTableViewCell: UITableViewCell {
             make.height.equalTo(30)
         }
         
+        priceLbl.snp.makeConstraints { (make) in
+            make.left.top.bottom.equalTo(contentView)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.2)
+        }
         
         descriptionLbl.snp.makeConstraints { (make) in
-            make.left.top.bottom.equalTo(contentView)
+            make.left.equalTo(priceLbl.snp.right)
+            make.top.bottom.equalTo(contentView)
             make.right.equalTo(distanceLbl.snp.left)
         }
     }
@@ -52,9 +61,8 @@ class OrderTableViewCell: UITableViewCell {
     
     func setOrderData(_ data: OrderData) {
         
-        let str = String(format: "%.0f m", data.getDistanceToPickUp())
-        distanceLbl.text = str
-        
+        distanceLbl.text = String(format: "%.0f m", data.getDistanceToPickUp())
+        priceLbl.text = String(format: "$%.02f", data.price)
         descriptionLbl.text = data.description
         //        placeLbl.text = data.destName
     }

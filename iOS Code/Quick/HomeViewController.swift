@@ -61,6 +61,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func profButtonPressed() {
         print("Prof button pressed")
     }
+    
+    func orderButtonPressed() {
+        print("Order button pressed")
+    }
 }
 
 extension String {

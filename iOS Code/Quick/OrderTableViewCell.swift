@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SnapKit
+
 
 class OrderTableViewCell: UITableViewCell {
     
@@ -16,14 +18,37 @@ class OrderTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        //Configure Views
+        
+        //Add Subviews
+        contentView.addSubview(distanceLbl)
+        contentView.addSubview(senderLbl)
+        contentView.addSubview(placeLbl)
+        
+        //Constraints
+        distanceLbl.snp.makeConstraints { (make) in
+            make.width.equalTo(40)
+            make.height.equalTo(30)
+            make.right.bottom.equalTo(contentView)
+        }
+        
+        senderLbl.snp.makeConstraints { (make) in
+            make.left.bottom.equalTo(contentView)
+            make.right.equalTo(distanceLbl.snp.left)
+            make.top.equalTo(distanceLbl)
+        }
+        
+        placeLbl.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(contentView)
+            make.bottom.equalTo(distanceLbl.snp.top)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -33,7 +58,9 @@ class OrderTableViewCell: UITableViewCell {
     
     func setOrderData(_ data: OrderData) {
         
-        
+//        distanceLbl.text = "\(data.getDistance())"
+//        senderLbl.text = data.person
+//        placeLbl.text = data.destName
     }
 
 }

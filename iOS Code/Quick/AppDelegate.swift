@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let locationManager = CLLocationManager()
         // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
         return true
     }

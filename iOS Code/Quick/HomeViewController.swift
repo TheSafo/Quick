@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let tableView = UITableView()
+    var availableOrders: [OrderData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,26 +21,57 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(OrderTableViewCell.self, forCellReuseIdentifier: "ordercell")
         
         //Add Subviews
+        view.addSubview(tableView)
         
         //Constraints
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        for _ in 0..<12 {
+//            let bsData = OrderData(description: "Desc "+String.randomString(length: 2),
+//                                   person: "Sender "+String.randomString(length: 2), destName: "Dest "+String.randomString(length: 2))
+//            availableOrders.append(bsData)
+        }
     }
 
 
     //MARK: - Table View Stuff
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        return UITableViewCell()
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return availableOrders.count
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
+        
+        cell.setOrderData(availableOrders[indexPath.row])
+        
+        return cell
+    }
 }
 
+extension String {
+    static func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+}

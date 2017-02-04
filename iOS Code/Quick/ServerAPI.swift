@@ -25,12 +25,20 @@ class ServerAPI: NSObject {
     }
 
     var name: String?
+    var notificationToken: String?
+    
+    func notificationTokenReceived(token: String) {
+        self.notificationToken = token
+    }
     
     func registerUser(name: String) {
+        while (notificationToken != nil) {
+            print("waiting...lets hope this escapes the loop eventually")
+        }
         self.name = name
         
-        let params = ["name":name, "id":deviceID]
-
+        let params = ["name":name,
+                     "id":deviceID, "token": notificationToken]
         
         Alamofire.request("http://10.38.44.7:42069/profile", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)

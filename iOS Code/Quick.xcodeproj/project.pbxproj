@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4306C8E41E46392E00D341F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306C8E31E46392E00D341F6 /* AppDelegate.swift */; };
-		4306C8E61E46392E00D341F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306C8E51E46392E00D341F6 /* HomeViewController.swift */; };
 		4306C8E91E46392E00D341F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8E71E46392E00D341F6 /* Main.storyboard */; };
 		4306C8EB1E46392E00D341F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8EA1E46392E00D341F6 /* Assets.xcassets */; };
 		4306C8EE1E46392E00D341F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8EC1E46392E00D341F6 /* LaunchScreen.storyboard */; };
 		43EB30481E464BD5008AB457 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */; };
+		43EB30491E465443008AB457 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306C8E51E46392E00D341F6 /* HomeViewController.swift */; };
 		4AA8341BBA0217A3EF4B952A /* Pods_Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283758EBA1D141BD7C202EE5 /* Pods_Quick.framework */; };
 		63C173F81E464A1F00CCCE9F /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */; };
 		63C173FA1E46531F00CCCE9F /* OrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C173F91E46531F00CCCE9F /* OrderData.swift */; };
@@ -231,6 +231,7 @@
 				4306C8E61E46392E00D341F6 /* HomeViewController.swift in Sources */,
 				63C173FA1E46531F00CCCE9F /* OrderData.swift in Sources */,
 				4306C8E41E46392E00D341F6 /* AppDelegate.swift in Sources */,
+				43EB30491E465443008AB457 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

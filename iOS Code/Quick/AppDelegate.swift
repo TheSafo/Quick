@@ -44,7 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CurrentLocation.sharedInstance.startLocationManager()
         
-        ServerAPI.sharedInstance.testPutRequestToMarko()
+        ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo")
+        ServerAPI.sharedInstance.sendLatestLocation()
         
         return true
     }

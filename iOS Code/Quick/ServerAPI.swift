@@ -19,14 +19,14 @@ class ServerAPI: NSObject {
             return UIDevice.current.identifierForVendor!.uuidString
         }
     }
-        
+
     var name: String?
     
     func registerUser(name: String) {
         self.name = name
         
-        let params = ["name":name,
-                      "id":deviceID]
+        let params = ["name":name, "id":deviceID]
+
         
         Alamofire.request("http://10.38.44.7:42069/profile", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
@@ -44,13 +44,30 @@ class ServerAPI: NSObject {
                       "lat":currentLocation.latitude,
                       "long":currentLocation.longitude] as [String : Any]
         
-        Alamofire.request("http://10.38.44.7:42069/locations", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
+        Alamofire.request("http://10.38.44.7:42069/request", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 print("REQ: \(response.request as Any)")  // original URL request
                 print("Resp: \(response.response as Any)")// URL response
                 print("Resp value: \(response.result.value as Any)")   // result of response serialization
         }
-
+    }
+    
+    func uploadOrder(order: OrderData) {
+        let params = ["id":deviceID,
+                      "description":order.description,
+                      "fromlat":order.pickUpLocation.coordinate.latitude,
+                      "fromlong":order.pickUpLocation.coordinate.longitude,
+                      "tolat":order.dropOffLocation.coordinate.latitude,
+                      "tolong":order.dropOffLocation.coordinate.longitude,
+                      "details":order.orderDetails] as [String : Any]
+        
+        Alamofire.request("http://10.38.44.7:42069/request", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                print("REQ: \(response.request as Any)")  // original URL request
+                print("Resp: \(response.response as Any)")// URL response
+                print("Resp value: \(response.result.value as Any)")   // result of response serialization
+        }
     }
 }

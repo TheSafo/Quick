@@ -12,6 +12,7 @@ import CoreLocation
 
 class OrderData {
     var description: String
+    var orderDetails: String
     var requesterID: String
     var price: Double
     var pickUpLocation: CLLocation
@@ -21,8 +22,9 @@ class OrderData {
     var acceptorID: String?
     
     
-    init(description: String, requestID: String, price: Double, pickUpLocation: CLLocation, dropOffLocation: CLLocation) {
+    init(description: String, orderDetails: String, requestID: String, price: Double, pickUpLocation: CLLocation, dropOffLocation: CLLocation) {
         self.description = description
+        self.orderDetails = orderDetails
         self.requesterID = requestID
         self.price  = price
         self.pickUpLocation = pickUpLocation

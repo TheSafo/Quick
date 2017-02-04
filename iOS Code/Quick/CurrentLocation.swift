@@ -24,5 +24,4 @@ class CurrentLocation: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations[0]
     }
-    
 }

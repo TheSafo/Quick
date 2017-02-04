@@ -39,10 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
 
-        
-        CurrentLocation.sharedInstance.startLocationManager()
-        
         ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo")
+        CurrentLocation.sharedInstance.startLocationManager()
         ServerAPI.sharedInstance.sendLatestLocation()
         
         return true

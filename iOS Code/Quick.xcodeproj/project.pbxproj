@@ -30,6 +30,7 @@
 		4306C8ED1E46392E00D341F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4306C8EF1E46392E00D341F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		63370B261E469346001D6B15 /* Quick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Quick.entitlements; sourceTree = "<group>"; };
 		63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		63C173F91E46531F00CCCE9F /* OrderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderData.swift; sourceTree = "<group>"; };
 		63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		4306C8E21E46392E00D341F6 /* Quick */ = {
 			isa = PBXGroup;
 			children = (
+				63370B261E469346001D6B15 /* Quick.entitlements */,
 				4306C8E31E46392E00D341F6 /* AppDelegate.swift */,
 				4306C8E51E46392E00D341F6 /* HomeViewController.swift */,
 				43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */,
@@ -140,6 +142,14 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = EYAM5ZUJCY;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -357,6 +367,7 @@
 			baseConfigurationReference = C05ADE1E7C8EDAF2168F9A97 /* Pods-Quick.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Quick/Quick.entitlements;
 				DEVELOPMENT_TEAM = EYAM5ZUJCY;
 				INFOPLIST_FILE = Quick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -372,6 +383,7 @@
 			baseConfigurationReference = AD3A25168AE2B2ADB6A360E7 /* Pods-Quick.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Quick/Quick.entitlements;
 				DEVELOPMENT_TEAM = EYAM5ZUJCY;
 				INFOPLIST_FILE = Quick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

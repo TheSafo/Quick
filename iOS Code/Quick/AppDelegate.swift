@@ -8,13 +8,26 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //NOTIFICATIONS:
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+            // actions based on whether notifications were authorized or not
+            if error == nil {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+        
+        
         // Override point for customization after application launch.
         
         let rootVC = HomeViewController()
@@ -46,6 +59,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Got a notification: ", response)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Dont know what happens here")
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        var token = ""
+        for i in 0..<deviceToken.count {
+            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+        }
+        print("Device Token: ", token)
+        ServerAPI.sharedInstance.notificationTokenReceived(token: token)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register:", error)
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -67,7 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

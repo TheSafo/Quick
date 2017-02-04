@@ -19,6 +19,10 @@ class ServerAPI: NSObject {
             return UIDevice.current.identifierForVendor!.uuidString
         }
     }
+    
+    private override init() {
+        super.init()
+    }
 
     var name: String?
     

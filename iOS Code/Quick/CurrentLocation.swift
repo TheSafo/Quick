@@ -11,23 +11,18 @@ import CoreLocation
 
 class CurrentLocation: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = CurrentLocation()
+//    override fileprivate init() {}
     
-    let locationManager: CLLocationManager
+    let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
 
-    
-    override init() {
-        self.locationManager = CLLocationManager()
-        
-        super.init()
-        
+    func startLocationManager() {
         if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            self.locationManager.startUpdatingLocation()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
         }
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations[0]

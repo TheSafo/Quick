@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -28,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let locationManager = CLLocationManager()
         // Ask for Authorisation from the User.
         locationManager.requestAlwaysAuthorization()
+        
+        CurrentLocation.sharedInstance.startLocationManager()
         
         return true
     }

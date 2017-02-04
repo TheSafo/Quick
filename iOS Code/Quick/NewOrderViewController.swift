@@ -11,8 +11,8 @@ import UIKit
 
 class NewOrderViewController: UIViewController {
     
-    var description: String?
-    var price: Double?
+//    var description: String?
+//    var price: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()

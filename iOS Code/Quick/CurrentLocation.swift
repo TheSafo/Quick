@@ -9,19 +9,27 @@
 import Foundation
 import CoreLocation
 
-class CurrentLocation: CLLocationManagerDelegate {
+class CurrentLocation: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = CurrentLocation()
     
-    let locationManager = CLLocationManager()
-    var currentLocation = CLLocation?
+    let locationManager: CLLocationManager
+    var currentLocation: CLLocation?
     
-    if CLLocationManager.locationServicesEnabled() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
+    override init() {
+        self.locationManager = CLLocationManager()
+        
+        super.init()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.startUpdatingLocation()
+        }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations[0]
+        //SERVER STUFF
     }
 }

@@ -12,18 +12,18 @@ import CoreLocation
 
 class OrderData {
     var description: String
-    var requesterID: Int
+    var requesterID: String
     var price: Double
     var pickUpLocation: CLLocation
     var dropOffLocation: CLLocation
     
     var claimed: Bool
-    var acceptorID: Int?
+    var acceptorID: String?
     
     
-    init(description: String, requestID: Int, price: Double, pickUpLocation: CLLocation, dropOffLocation: CLLocation) {
+    init(description: String, requestID: String, price: Double, pickUpLocation: CLLocation, dropOffLocation: CLLocation) {
         self.description = description
-        self.requestID = requestID
+        self.requesterID = requestID
         self.price  = price
         self.pickUpLocation = pickUpLocation
         self.dropOffLocation = dropOffLocation
@@ -31,7 +31,7 @@ class OrderData {
     }
     
     func getDistanceToPickUp()->CLLocationDistance {
-        return pickUpLocation.distance(from: CurrentLocation.sharedInstance.currentLocation);
+        return pickUpLocation.distance(from: CurrentLocation.sharedInstance.currentLocation!);
     }
     
     func claimOrder()->Bool {

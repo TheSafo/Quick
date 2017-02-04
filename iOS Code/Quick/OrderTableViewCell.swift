@@ -8,17 +8,6 @@
 
 import UIKit
 
-struct OrderData {
-    
-    var description: String
-    var person: String
-    var destName: String
-    
-    func getDistance() -> Double {
-        return 0.7
-    }
-}
-
 class OrderTableViewCell: UITableViewCell {
     
     let distanceLbl = UILabel()

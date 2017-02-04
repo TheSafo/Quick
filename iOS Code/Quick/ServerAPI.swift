@@ -13,6 +13,12 @@ import CoreLocation
 
 class ServerAPI: NSObject {
     static let sharedInstance = ServerAPI()
+    
+    var deviceID: String {
+        get {
+            return UIDevice.current.identifierForVendor!.uuidString
+        }
+    }
         
     var name: String?
     
@@ -20,7 +26,7 @@ class ServerAPI: NSObject {
         self.name = name
         
         let params = ["name":name,
-                     "id":UUID().uuidString]
+                      "id":deviceID]
         
         Alamofire.request("http://10.38.44.7:42069/profile", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
@@ -34,7 +40,7 @@ class ServerAPI: NSObject {
     func sendLatestLocation() {
         let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate ?? CLLocationCoordinate2DMake(100, 100)
         
-        let params = ["id":UUID().uuidString,
+        let params = ["id": deviceID,
                       "lat":currentLocation.latitude,
                       "long":currentLocation.longitude] as [String : Any]
         

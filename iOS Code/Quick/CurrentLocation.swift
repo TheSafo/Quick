@@ -17,6 +17,8 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     var currentLocation: CLLocation?
 
     func startLocationManager() {
+        locationManager.requestAlwaysAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

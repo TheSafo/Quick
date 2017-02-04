@@ -37,6 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let bsData = OrderData(description: "Desc \(i)", requestID: "", price: 12, pickUpLocation: bsLoc, dropOffLocation: bsLoc)
             availableOrders.append(bsData)
         }
+        
     }
 
 

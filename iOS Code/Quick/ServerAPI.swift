@@ -9,10 +9,11 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
 class ServerAPI: NSObject {
     static let sharedInstance = ServerAPI()
-    
+        
     var name: String?
     
     func registerUser(name: String) {
@@ -31,7 +32,7 @@ class ServerAPI: NSObject {
     }
     
     func sendLatestLocation() {
-        let currentLocation = CurrentLocation.sharedInstance.currentLocation!.coordinate
+        let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate ?? CLLocationCoordinate2DMake(100, 100)
         
         let params = ["id":UUID().uuidString,
                       "lat":currentLocation.latitude,
@@ -40,9 +41,9 @@ class ServerAPI: NSObject {
         Alamofire.request("http://10.38.44.7:42069/locations", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-                print(response.request as Any)  // original URL request
-                print(response.response as Any) // URL response
-                print(response.result.value as Any)   // result of response serialization
+                print("REQ: \(response.request as Any)")  // original URL request
+                print("Resp: \(response.response as Any)")// URL response
+                print("Resp value: \(response.result.value as Any)")   // result of response serialization
         }
 
     }

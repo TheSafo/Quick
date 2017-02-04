@@ -22,6 +22,9 @@ class NewOrderViewController: UIViewController {
         descriptionInput.isEditable = true
         
         //Add
+        view.addSubview(descriptionInput)
+        view.addSubview(priceInput)
+        view.addSubview(pickupNameInput)
         
         //Constrain
     }

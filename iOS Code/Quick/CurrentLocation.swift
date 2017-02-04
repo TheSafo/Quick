@@ -13,7 +13,7 @@ class CurrentLocation: CLLocationManagerDelegate {
     static let sharedInstance = CurrentLocation()
     
     let locationManager = CLLocationManager()
-    var currentLocation = CLLocation?
+    var currentLocation = CLLocation!
     
     if CLLocationManager.locationServicesEnabled() {
         locationManager.delegate = self

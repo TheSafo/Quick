@@ -23,7 +23,7 @@ class OrderData {
     
     init(description: String, requestID: Int, price: Double, pickUpLocation: CLLocation, dropOffLocation: CLLocation) {
         self.description = description
-        self.requestID = requestID
+        self.requesterID = requestID
         self.price  = price
         self.pickUpLocation = pickUpLocation
         self.dropOffLocation = dropOffLocation

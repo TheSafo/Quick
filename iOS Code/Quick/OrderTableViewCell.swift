@@ -9,17 +9,6 @@
 import UIKit
 import SnapKit
 
-struct OrderData {
-    
-    var description: String
-    var person: String
-    var destName: String
-    
-    func getDistance() -> Double {
-        return 0.7
-    }
-}
-
 class OrderTableViewCell: UITableViewCell {
     
     let distanceLbl = UILabel()
@@ -68,9 +57,9 @@ class OrderTableViewCell: UITableViewCell {
     
     func setOrderData(_ data: OrderData) {
         
-        distanceLbl.text = "\(data.getDistance())"
-        senderLbl.text = data.person
-        placeLbl.text = data.destName
+//        distanceLbl.text = "\(data.getDistance())"
+//        senderLbl.text = data.person
+//        placeLbl.text = data.destName
     }
 
 }

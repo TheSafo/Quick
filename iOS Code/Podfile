@@ -1,6 +1,9 @@
+# source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 use_frameworks!
 
 target 'Quick' do
   pod 'SnapKit'
+  pod 'SwiftyJSON', :git => 'https://github.com/acegreen/SwiftyJSON.git', :branch => 'swift3'
+  pod 'Alamofire', '~> 4.3'
 end

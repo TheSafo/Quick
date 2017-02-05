@@ -32,15 +32,15 @@ class ServerAPI: NSObject {
     }
     
     func registerUser(name: String) {
-        while (notificationToken != nil) {
+        while (notificationToken == nil) {
             print("waiting...lets hope this escapes the loop eventually")
         }
         self.name = name
         
         let params = ["name":name,
-                     "id":deviceID, "token": notificationToken]
+                     "id":deviceID, "token": notificationToken!]
         
-        Alamofire.request("http://10.38.44.7:42069/profile", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
+        Alamofire.request("http://10.38.44.7:42069/profiles", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 print(response.request as Any)  // original URL request
@@ -56,7 +56,7 @@ class ServerAPI: NSObject {
                       "lat":currentLocation.latitude,
                       "long":currentLocation.longitude] as [String : Any]
         
-        Alamofire.request("http://10.38.44.7:42069/request", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
+        Alamofire.request("http://10.38.44.7:42069/locations", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 print("REQ: \(response.request as Any)")  // original URL request
@@ -66,7 +66,7 @@ class ServerAPI: NSObject {
     }
     
     func uploadOrder(order: OrderData) {
-        let params = ["id":deviceID,
+        let params = ["requester":deviceID,
                       "description":order.description,
                       "fromlat":order.pickUpLocation.coordinate.latitude,
                       "fromlong":order.pickUpLocation.coordinate.longitude,
@@ -74,7 +74,7 @@ class ServerAPI: NSObject {
                       "tolong":order.dropOffLocation.coordinate.longitude,
                       "details":order.orderDetails] as [String : Any]
         
-        Alamofire.request("http://10.38.44.7:42069/request", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
+        Alamofire.request("http://10.38.44.7:42069/requests", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 print("REQ: \(response.request as Any)")  // original URL request

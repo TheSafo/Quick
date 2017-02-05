@@ -96,6 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else {
             print("NORMAL NOTIFICATION")
         }
+        
+        completionHandler([.sound, .alert])
 
     }
     

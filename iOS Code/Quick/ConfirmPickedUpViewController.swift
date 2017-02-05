@@ -128,7 +128,7 @@ class ConfirmPickedUpViewController: UIViewController {
         
         for vw in view.subviews {
             
-            if vw == confirmBtn {
+            if vw == confirmBtn || vw == pickupBtn || vw == dropoffBtn {
                 vw.backgroundColor = .raceSilver()
                 vw.layer.borderColor = UIColor.yellow.cgColor
                 vw.layer.borderWidth = 4

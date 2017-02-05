@@ -34,7 +34,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         for i in 0..<12 {
             let bsLoc = CLLocation(latitude: 100, longitude: 100)
-            let bsData = OrderData(description: "Desc \(i)", orderDetails: "Details \(i)", requestID: "", price: 12, pickUpLocation: bsLoc, dropOffLocation: bsLoc)
+            let bsLoc2 = CLLocation(latitude: 100.3, longitude: 100.3)
+            let bsData = OrderData(description: "Desc \(i)", orderDetails: "Details \(i)", requestID: "", price: 12, pickUpLocation: bsLoc, dropOffLocation: bsLoc2)
             availableOrders.append(bsData)
         }
         

@@ -112,7 +112,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let nextVC = OrderDetailsViewController(order: self.availableOrders[indexPath.row])
+        var nextVC = UIViewController()
+
+        switch indexPath.section {
+        case 0:
+            nextVC = OrderDetailsViewController(order: self.claimedOrders[indexPath.row])
+        case 1:
+            nextVC = ConfirmDeliveredViewController(order: self.activeOrders[indexPath.row])
+        case 2:
+            nextVC = OrderDetailsViewController(order: self.availableOrders[indexPath.row])
+        default:
+            break
+        }
+        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

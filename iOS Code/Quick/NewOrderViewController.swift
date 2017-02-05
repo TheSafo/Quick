@@ -15,9 +15,9 @@ class NewOrderViewController: UIViewController {
     let blurbInput = UITextField()
     let priceInput = UITextField()
     let descInput = UITextView()
-    let submitBtn = UIButton()
-    let pickupLocBtn = UIButton()
-    let dropoffLocBtn = UIButton()
+    let submitBtn = UIButton(type: .system)
+    let pickupLocBtn = UIButton(type: .system)
+    let dropoffLocBtn = UIButton(type: .system)
 
     let locPicker = LocationPickerViewController()
     
@@ -45,8 +45,8 @@ class NewOrderViewController: UIViewController {
         descInput.isEditable = true
         descInput.delegate = self
         descInput.backgroundColor = .white//UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        descInput.layer.borderColor = UIColor.yellow.cgColor
-        descInput.layer.borderWidth = 4
+        descInput.layer.borderColor = UIColor.lightGray.cgColor
+        descInput.layer.borderWidth = 5
         descInput.layer.cornerRadius = 8
         
 //        blurbInput.borderStyle = .roundedRect
@@ -54,8 +54,8 @@ class NewOrderViewController: UIViewController {
         blurbInput.returnKeyType = .done
         blurbInput.delegate = self
         blurbInput.backgroundColor = .white//UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        blurbInput.layer.borderColor = UIColor.yellow.cgColor
-        blurbInput.layer.borderWidth = 4
+        blurbInput.layer.borderColor = UIColor.lightGray.cgColor
+        blurbInput.layer.borderWidth = 5
         blurbInput.layer.cornerRadius = 8
 
 //        priceInput.borderStyle = .roundedRect
@@ -64,13 +64,13 @@ class NewOrderViewController: UIViewController {
         priceInput.returnKeyType = .done
         priceInput.delegate = self
         priceInput.backgroundColor = .white//UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        priceInput.layer.borderColor = UIColor.yellow.cgColor
-        priceInput.layer.borderWidth = 4
+        priceInput.layer.borderColor = UIColor.lightGray.cgColor
+        priceInput.layer.borderWidth = 5
         priceInput.layer.cornerRadius = 8
 
         pickupLocBtn.backgroundColor = .white
-        pickupLocBtn.layer.borderColor = UIColor.yellow.cgColor
-        pickupLocBtn.layer.borderWidth = 4
+        pickupLocBtn.layer.borderColor = UIColor.lightGray.cgColor
+        pickupLocBtn.layer.borderWidth = 5
         pickupLocBtn.layer.cornerRadius = 8
         pickupLocBtn.setTitleColor(.black, for: .normal)
         pickupLocBtn.setTitle("🚚 Pickup location", for: .normal)
@@ -79,8 +79,8 @@ class NewOrderViewController: UIViewController {
         
         
         dropoffLocBtn.backgroundColor = .white
-        dropoffLocBtn.layer.borderColor = UIColor.yellow.cgColor
-        dropoffLocBtn.layer.borderWidth = 4
+        dropoffLocBtn.layer.borderColor = UIColor.lightGray.cgColor
+        dropoffLocBtn.layer.borderWidth = 5
         dropoffLocBtn.layer.cornerRadius = 8
         dropoffLocBtn.setTitleColor(.black, for: .normal)
         dropoffLocBtn.setTitle("📍Dropoff location", for: .normal)
@@ -93,8 +93,8 @@ class NewOrderViewController: UIViewController {
         💸lbl.textAlignment = .right
         
 //        submitBtn.backgroundColor = .white
-        submitBtn.layer.borderColor = UIColor.yellow.cgColor
-        submitBtn.layer.borderWidth = 2
+        submitBtn.layer.borderColor = UIColor.lightGray.cgColor
+        submitBtn.layer.borderWidth = 5
         submitBtn.layer.cornerRadius = 8
         submitBtn.setTitleColor(.black, for: .normal)
         submitBtn.setTitle("Submit Order", for: .normal)
@@ -154,7 +154,7 @@ class NewOrderViewController: UIViewController {
         
         for vw in view.subviews {
 
-            if vw == submitBtn {
+            if vw == submitBtn || vw == pickupLocBtn || vw == dropoffLocBtn {
                 continue
 //                bgView.backgroundColor = .white
             }
@@ -165,8 +165,8 @@ class NewOrderViewController: UIViewController {
             bgView.layer.cornerRadius = 8
             view.insertSubview(bgView, at: 0)
             bgView.snp.makeConstraints({ (make) in
-                make.top.left.equalTo(vw).offset(-6)
-                make.bottom.right.equalTo(vw).offset(6)
+                make.top.left.equalTo(vw).offset(-3)
+                make.bottom.right.equalTo(vw).offset(3)
             })
         }
     }

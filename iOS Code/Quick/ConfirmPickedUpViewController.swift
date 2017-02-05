@@ -21,10 +21,10 @@ class ConfirmPickedUpViewController: UIViewController {
     
     let directionsLinkLbl = UILabel()
     
-    let confirmBtn = UIButton()
+    let confirmBtn = UIButton(type: .system)
     
-    let pickupBtn = UIButton()
-    let dropoffBtn = UIButton()
+    let pickupBtn = UIButton(type: .system)
+    let dropoffBtn = UIButton(type: .system)
     
     let ordererNumberLbl = UITextView()
     let ordererNameLbl = UILabel()
@@ -40,6 +40,8 @@ class ConfirmPickedUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Order Details"
         
         view.backgroundColor = .raceRed()
         
@@ -140,18 +142,24 @@ class ConfirmPickedUpViewController: UIViewController {
         
         for vw in view.subviews {
             
+            vw.clipsToBounds = true
+            
             if vw == confirmBtn || vw == pickupBtn || vw == dropoffBtn {
                 vw.backgroundColor = .raceSilver()
-                vw.layer.borderColor = UIColor.yellow.cgColor
-                vw.layer.borderWidth = 4
+                vw.layer.borderColor = UIColor.lightGray.cgColor
+                vw.layer.borderWidth = 5
                 vw.layer.cornerRadius = 8
+                
+                if vw != confirmBtn {
+                    vw.backgroundColor = .white
+                }
                 
                 continue
             }
             
             vw.backgroundColor = .white
-            vw.layer.borderColor = UIColor.yellow.cgColor
-            vw.layer.borderWidth = 4
+            vw.layer.borderColor = UIColor.lightGray.cgColor
+            vw.layer.borderWidth = 5
             vw.layer.cornerRadius = 8
             
             let bgView = UIView()
@@ -160,8 +168,8 @@ class ConfirmPickedUpViewController: UIViewController {
             bgView.layer.cornerRadius = 8
             view.insertSubview(bgView, at: 0)
             bgView.snp.makeConstraints({ (make) in
-                make.top.left.equalTo(vw).offset(-6)
-                make.bottom.right.equalTo(vw).offset(6)
+                make.top.left.equalTo(vw).offset(-3)
+                make.bottom.right.equalTo(vw).offset(3)
             })
         }
     }

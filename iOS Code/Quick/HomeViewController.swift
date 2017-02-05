@@ -36,6 +36,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Orders"
+        
         //View Config
         view.backgroundColor = .red
         
@@ -70,11 +72,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Claimed Orders"
+            return "Claimed"
         case 1:
-            return "Active Orders"
+            return "Active"
         case 2:
-            return "Available Orders"
+            return "Available"
         default:
             return "le monke"
         }

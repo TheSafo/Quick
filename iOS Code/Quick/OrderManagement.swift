@@ -16,7 +16,6 @@ class OrderManagement: NSObject {
     var claimedOrders = [OrderData]()
     
     func placedNewOrder(newOrder: OrderData) {
-        
         placedOrders.append(newOrder)
     }
     
@@ -24,4 +23,17 @@ class OrderManagement: NSObject {
         claimedOrders.append(newOrder)
     }
     
+    func placedOrderClaimed(updatedOrder: OrderData) {
+        var i = 0
+        for (index,order) in placedOrders.enumerated() {
+            if order.orderID == updatedOrder.orderID {
+                i = index
+                break;
+            }
+        }
+        placedOrders[i].claimed = true;
+        placedOrders[i].acceptorID = updatedOrder.acceptorID;
+        placedOrders[i].pickUpName = updatedOrder.pickUpName;
+        placedOrders[i].pickUpNumber = updatedOrder.pickUpNumber;
+    }
 }

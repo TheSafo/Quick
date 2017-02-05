@@ -38,6 +38,8 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
         
         print("Got location update! \(locations[0])")
         currentLocation = locations[0]
+        HomeViewController.sharedInstance.refreshTable()
+        
         //SERVER STUFF
         if (ServerAPI.sharedInstance.userRegistered) {
             ServerAPI.sharedInstance.sendLatestLocation()

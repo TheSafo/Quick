@@ -31,7 +31,7 @@ class ServerAPI: NSObject {
         self.notificationToken = token
         
         userRegistered = true
-        if let name = self.name {
+        if let name = self.name, let number = self.number {
             self.registerUser(name: name, number: number)
         }
     }
@@ -46,7 +46,7 @@ class ServerAPI: NSObject {
             return
         }
         
-        let params = ["name":name,
+        let params = ["name":name, "phone": number,
                      "id":deviceID, "token": notificationToken!]
         
         Alamofire.request("http://10.38.44.7:42069/profiles", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])

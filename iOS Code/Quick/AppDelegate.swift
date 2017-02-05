@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let navVC = UINavigationController(rootViewController: rootVC)
         
         navVC.navigationBar.isTranslucent = false
-        navVC.navigationBar.barTintColor = UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1)
+        navVC.navigationBar.barTintColor = .raceSilver()//UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1)
         navVC.navigationBar.tintColor = .yellow
         
         let profBtn = UIButton(type: .custom)
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.makeKeyAndVisible()
         
 
-        ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo", number: "9543102278")
+        ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo", number: "1234567890")
         CurrentLocation.sharedInstance.startLocationManager()
         
         return true
@@ -129,5 +129,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
+
+extension UIColor {
+    static func raceSilver() -> UIColor {
+        return UIColor(colorLiteralRed: 192.0/255.0, green: 192.0/255.0, blue: 192.0/255.0, alpha: 1.0)
+    }
+    
+    static func raceOrange() -> UIColor {
+        return  UIColor(colorLiteralRed: 255.0/255.0,  green: 122.0/255.0, blue: 28.0/255.0, alpha: 1.0)
+    }
+    
+    static func raceRed() -> UIColor {
+//        return UIColor.cyan
+        return UIColor(colorLiteralRed: 66.0/255.0, green: 220.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+//        return UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+    }
 }
 

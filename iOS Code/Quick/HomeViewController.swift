@@ -15,6 +15,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     let tableView = UITableView()
+    var claimedOrders: [OrderData] = []
+    var activeOrders: [OrderData] = []
     var availableOrders: [OrderData] = []
 
     override func viewDidLoad() {
@@ -34,6 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+
     }
     
     func refreshTable() {
@@ -47,20 +50,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     //MARK: - Table View Stuff
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Claimed Orders"
+        case 1:
+            return "Active Orders"
+        case 2:
+            return "Available Orders"
+        default:
+            return "le monke"
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableOrders.count
+        switch section {
+        case 0:
+            return claimedOrders.count
+        case 1:
+            return activeOrders.count
+        case 2:
+            return availableOrders.count
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
-        
-        cell.setOrderData(availableOrders[indexPath.row])
-        
-        return cell
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
+            
+            cell.setOrderData(claimedOrders[indexPath.row])
+            
+            cell.backgroundColor = .green
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
+            
+            cell.setOrderData(activeOrders[indexPath.row])
+            
+            cell.backgroundColor = .cyan
+            
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
+            
+            cell.setOrderData(availableOrders[indexPath.row])
+            
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

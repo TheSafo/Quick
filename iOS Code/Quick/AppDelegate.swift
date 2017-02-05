@@ -141,9 +141,11 @@ extension UIColor {
     }
     
     static func raceRed() -> UIColor {
-//        return UIColor.cyan
+        return UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+    }
+    
+    static func raceBlue() -> UIColor {
         return UIColor(colorLiteralRed: 66.0/255.0, green: 220.0/255.0, blue: 244.0/255.0, alpha: 1.0)
-//        return UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     }
 }
 

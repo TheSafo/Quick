@@ -72,7 +72,7 @@ class ConfirmPickedUpViewController: UIViewController {
         
         
         ordererNumberLbl.isEditable = false
-        ordererNumberLbl.isSelectable = true
+//        ordererNumberLbl.isSelectable = true
         ordererNumberLbl.dataDetectorTypes = .phoneNumber
         
         ordererNameLbl.text = order.pickUpName

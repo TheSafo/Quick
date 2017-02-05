@@ -101,7 +101,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.setOrderData(claimedOrders[indexPath.row])
             
-            cell.backgroundColor = .green
+//            if claimedOrders[indexPath.row].claimed {
+                cell.backgroundColor = .cyan
+//            }
+//            else {
+//                cell.backgroundColor = .raceOrange()
+//            }
             
             return cell
         case 1:
@@ -109,13 +114,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.setOrderData(activeOrders[indexPath.row])
             
-            cell.backgroundColor = .cyan
+            if activeOrders[indexPath.row].claimed {
+                cell.backgroundColor = .green
+            }
+            else {
+                cell.backgroundColor = .raceOrange()
+            }
             
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ordercell", for: indexPath) as! OrderTableViewCell
             
             cell.setOrderData(availableOrders[indexPath.row])
+            
+            cell.backgroundColor = .white
             
             return cell
         default:

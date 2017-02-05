@@ -18,7 +18,7 @@ class OrderData {
     var pickUpLocation: CLLocation
     var dropOffLocation: CLLocation
     
-    var orderID: String?
+    var orderID: Int?
     
     var claimed: Bool
     var acceptorID: String?

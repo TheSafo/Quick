@@ -151,6 +151,7 @@ class OrderDetailsViewController: UIViewController {
     func confirmBtnPressed() {
         if !order.claimed {
             //user is about to accept order
+            ServerAPI.sharedInstance.claimOrder(order: order)
         }
         else {
             //user is about to mark their claimed order as delivered

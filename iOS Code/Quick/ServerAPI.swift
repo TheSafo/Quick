@@ -94,7 +94,7 @@ class ServerAPI: NSObject {
                 print("Resp value: \(response.result.value as Any)")   // result of response serialization
                 //Update the order's orderID, then
                 if let orderID = response.result.value {
-                    order.orderID = orderID
+                    order.orderID = Int(orderID)
                     OrderManagement.sharedInstance.placedNewOrder(newOrder: order)
                 }
         }
@@ -117,12 +117,12 @@ class ServerAPI: NSObject {
             .responseJSON { response in
                 if let data = response.result.value as? [String:AnyObject],
                 let results = data["results"] as? [[String:AnyObject]] {
-                    print("RESULT SIZE: ", results.count)
                     for result in results {
                         let pickUpLocation = CLLocation.init(latitude: Double(result["fromlat"] as! NSNumber), longitude: Double(result["fromlon"] as! NSNumber))
                         let dropOffLocation = CLLocation.init(latitude: Double(result["tolat"] as! NSNumber), longitude: Double(result["tolon"] as! NSNumber))
                         
                         let order = OrderData(description: result["description"] as! String, orderDetails: result["details"] as! String, requestID: result["requester"] as! String, price: Double(result["price"] as! NSNumber), pickUpLocation: pickUpLocation, dropOffLocation: dropOffLocation)
+                        order.orderID = (Int(result["id"] as! NSNumber))
                         
                         if orders == nil {
                             orders = [OrderData]()
@@ -142,22 +142,15 @@ class ServerAPI: NSObject {
     }
     
     func claimOrder(order: OrderData) {
-        let params = ["id":order.requesterID,
+        let params = ["id":order.orderID!,
                       "accepter":ServerAPI.sharedInstance.deviceID]
             as [String : Any]
         
         Alamofire.request("http://10.38.44.7:42069/requests", method: .put, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-                print("!!!!!!!!!!!")
-                print(response)
-                print("!!!!!!!!!")
                 if let data = response.result.value {
-                    print("!!!!!!!!")
-                    print("!!!!!!!!")
                     print(data)
-                    print("!!!!!!!!")
-                    print("!!!!!!!!")
                 } else {
                     print("whoops")
                 }

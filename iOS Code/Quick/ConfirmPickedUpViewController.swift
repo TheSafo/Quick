@@ -58,7 +58,7 @@ class ConfirmPickedUpViewController: UIViewController {
         delivererNumberLbl.isEditable = false
         delivererNumberLbl.dataDetectorTypes = .all
         
-        confirmBtn.setTitle("Take This Order", for: .normal)
+        confirmBtn.setTitle("Complete This Delivery", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)
         confirmBtn.addTarget(self, action: #selector(confirmBtnPressed), for: .touchUpInside)
         
@@ -78,6 +78,8 @@ class ConfirmPickedUpViewController: UIViewController {
         view.addSubview(confirmBtn)
         view.addSubview(pickupBtn)
         view.addSubview(dropoffBtn)
+        view.addSubview(delivererNameLbl)
+        view.addSubview(delivererNumberLbl)
         
         blurbLbl.snp.makeConstraints { (make) in
             make.top.equalTo(view).inset(20)
@@ -107,8 +109,18 @@ class ConfirmPickedUpViewController: UIViewController {
             make.centerX.width.equalTo(pickupBtn)
             make.height.equalTo(30)
         }
-        confirmBtn.snp.makeConstraints { (make) in
+        delivererNameLbl.snp.makeConstraints { (make) in
             make.top.equalTo(dropoffBtn.snp.bottom).offset(20)
+            make.centerX.width.equalTo(blurbLbl)
+            make.height.equalTo(30)
+        }
+        delivererNumberLbl.snp.makeConstraints { (make) in
+            make.top.equalTo(delivererNameLbl.snp.bottom).offset(20)
+            make.centerX.width.equalTo(delivererNameLbl)
+            make.height.equalTo(30)
+        }
+        confirmBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(delivererNumberLbl.snp.bottom).offset(20)
             make.centerX.equalTo(detailsLbl)
             make.width.equalTo(view).multipliedBy(0.7)
             make.height.equalTo(60)
@@ -143,8 +155,7 @@ class ConfirmPickedUpViewController: UIViewController {
     }
     
     func confirmBtnPressed() {
-        //user is about to accept order
-        ServerAPI.sharedInstance.claimOrder(order: order)
+        print("User completed order!")
     }
     
     func pickupBtnPressed() {

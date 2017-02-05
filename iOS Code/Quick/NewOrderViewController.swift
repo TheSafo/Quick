@@ -32,13 +32,9 @@ class NewOrderViewController: UIViewController {
             //tap.cancelsTouchesInView = false
             view.addGestureRecognizer(tap)
         
-        view.backgroundColor = .yellow
-        
         //Config
         descInput.isEditable = true
         
-//        blurbInput.backgroundColor = .purple
-//        priceInput.backgroundColor = .green
         blurbInput.borderStyle = .roundedRect
         blurbInput.placeholder = "Blurb"
         blurbInput.returnKeyType = .done

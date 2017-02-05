@@ -40,7 +40,6 @@ class ConfirmPickedUpViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
-        self.navigationController?.backg
     }
     
     override func viewDidLoad() {

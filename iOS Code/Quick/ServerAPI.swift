@@ -93,7 +93,10 @@ class ServerAPI: NSObject {
                 print("Resp: \(response.response as Any)")// URL response
                 print("Resp value: \(response.result.value as Any)")   // result of response serialization
                 //Update the order's orderID, then
-                //Send to OrderManagement
+                if let orderID = response.result.value as? String {
+                    order.orderID = orderID
+                    OrderManagement.sharedInstance.placedNewOrder(newOrder: order)
+                }
         }
     }
 }

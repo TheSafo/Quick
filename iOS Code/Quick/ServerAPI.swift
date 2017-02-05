@@ -13,15 +13,12 @@ import CoreLocation
 
 class ServerAPI: NSObject {
     static let sharedInstance = ServerAPI()
+    override fileprivate init() {}
     
     var deviceID: String {
         get {
             return UIDevice.current.identifierForVendor!.uuidString
         }
-    }
-    
-    private override init() {
-        super.init()
     }
 
     var name: String?
@@ -92,6 +89,8 @@ class ServerAPI: NSObject {
                 print("REQ: \(response.request as Any)")  // original URL request
                 print("Resp: \(response.response as Any)")// URL response
                 print("Resp value: \(response.result.value as Any)")   // result of response serialization
+                //Update the order's orderID, then
+                //Send to OrderManagement
         }
     }
 }

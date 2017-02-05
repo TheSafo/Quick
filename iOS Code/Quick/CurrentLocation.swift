@@ -11,7 +11,7 @@ import CoreLocation
 
 class CurrentLocation: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = CurrentLocation()
-//    override fileprivate init() {}
+    override fileprivate init() {}
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?

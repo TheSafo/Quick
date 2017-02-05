@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        
         // Override point for customization after application launch.
         
         let rootVC = HomeViewController()
@@ -57,13 +56,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
+    
+    //NOTIFICATION INFORMATION:
+    //If app wasnt running and notification is clicked to launch apps, the notification is passed to launchOptions of didFinishLaunchingWithOptions
+    //If app was running in foreground, didReceiveRemoteNotification will be called
+    //If app was in bg and user taps notification, didReceiveRemoteNotification is called
+    
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Got a notification: ", response)
+        let aps = response.notification.request.content.userInfo["aps"] as! [String: AnyObject]
+        
+        if (aps["content-available"] as? NSString)?.integerValue == 1 {
+            //Silent Notification - Do stuff with the data
+            print("SILENT")
+        } else {
+            print("NORMAL NOTIFICATION")
+        }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("Dont know what happens here")
+        let aps = notification.request.content.userInfo["aps"] as! [String: AnyObject]
+        
+        if (aps["content-available"] as? NSString)?.integerValue == 1 {
+            //Silent Notification - Do stuff with the data
+            print("SILENT")
+        } else {
+            print("NORMAL NOTIFICATION")
+        }
+
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

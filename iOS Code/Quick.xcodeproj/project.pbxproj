@@ -14,6 +14,7 @@
 		43EB30481E464BD5008AB457 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */; };
 		43EB30491E465443008AB457 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306C8E51E46392E00D341F6 /* HomeViewController.swift */; };
 		4AA8341BBA0217A3EF4B952A /* Pods_Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283758EBA1D141BD7C202EE5 /* Pods_Quick.framework */; };
+		63370B281E46B076001D6B15 /* OrderManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63370B271E46B076001D6B15 /* OrderManagement.swift */; };
 		63C173F81E464A1F00CCCE9F /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */; };
 		63C173FA1E46531F00CCCE9F /* OrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C173F91E46531F00CCCE9F /* OrderData.swift */; };
 		63C173FC1E465CAB00CCCE9F /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */; };
@@ -31,6 +32,7 @@
 		4306C8EF1E46392E00D341F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		63370B261E469346001D6B15 /* Quick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Quick.entitlements; sourceTree = "<group>"; };
+		63370B271E46B076001D6B15 /* OrderManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderManagement.swift; sourceTree = "<group>"; };
 		63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		63C173F91E46531F00CCCE9F /* OrderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderData.swift; sourceTree = "<group>"; };
 		63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				63C173F91E46531F00CCCE9F /* OrderData.swift */,
 				63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */,
 				63C173FD1E4668E300CCCE9F /* ServerAPI.swift */,
+				63370B271E46B076001D6B15 /* OrderManagement.swift */,
 			);
 			path = Quick;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C173F81E464A1F00CCCE9F /* NewOrderViewController.swift in Sources */,
+				63370B281E46B076001D6B15 /* OrderManagement.swift in Sources */,
 				43EB30481E464BD5008AB457 /* OrderTableViewCell.swift in Sources */,
 				63C173FC1E465CAB00CCCE9F /* CurrentLocation.swift in Sources */,
 				63C173FA1E46531F00CCCE9F /* OrderData.swift in Sources */,

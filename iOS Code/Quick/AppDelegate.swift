@@ -54,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo")
         CurrentLocation.sharedInstance.startLocationManager()
-        ServerAPI.sharedInstance.sendLatestLocation()
         
         return true
     }

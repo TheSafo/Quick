@@ -33,7 +33,9 @@ class ServerAPI: NSObject {
         self.notificationToken = token
         
         userRegistered = true
-        self.registerUser(name: name!)
+        if let name = self.name {
+            self.registerUser(name: name)
+        }
     }
     
     func registerUser(name: String) {
@@ -58,7 +60,9 @@ class ServerAPI: NSObject {
     }
     
     func sendLatestLocation() {
-        let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate ?? CLLocationCoordinate2DMake(100, 100)
+        guard let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate else {
+            return;
+        }
         
         let params = ["id": deviceID,
                       "lat":currentLocation.latitude,

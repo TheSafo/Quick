@@ -30,6 +30,8 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
         print("Got location update! \(locations[0])")
         currentLocation = locations[0]
         //SERVER STUFF
-        ServerAPI.sharedInstance.sendLatestLocation()
+        if (ServerAPI.sharedInstance.userRegistered) {
+            ServerAPI.sharedInstance.sendLatestLocation()
+        }
     }
 }

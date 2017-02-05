@@ -27,15 +27,23 @@ class ServerAPI: NSObject {
     var name: String?
     var notificationToken: String?
     
+    var userRegistered = false
+    
     func notificationTokenReceived(token: String) {
         self.notificationToken = token
+        
+        userRegistered = true
+        self.registerUser(name: name!)
     }
     
     func registerUser(name: String) {
-        while (notificationToken == nil) {
-            print("waiting...lets hope this escapes the loop eventually")
-        }
+        
         self.name = name
+
+        guard userRegistered else {
+            print("User not registered try again later!")
+            return
+        }
         
         let params = ["name":name,
                      "id":deviceID, "token": notificationToken!]

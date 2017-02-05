@@ -49,6 +49,7 @@ class OrderDetailsViewController: UIViewController {
         priceLbl.textAlignment = .center
 //        requesterNameLbl.textAlignment = .center
         detailsLbl.textAlignment = .center
+        detailsLbl.numberOfLines = 0
 
         confirmBtn.setTitle("Take This Order", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)

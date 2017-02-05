@@ -27,7 +27,7 @@ class ConfirmPickedUpViewController: UIViewController {
     let dropoffBtn = UIButton()
     
     let ordererNumberLbl = UITextView()
-    let orderererNameLbl = UILabel()
+    let ordererNameLbl = UILabel()
     
     init(order: OrderData) {
         self.order = order
@@ -46,18 +46,23 @@ class ConfirmPickedUpViewController: UIViewController {
         blurbLbl.text = order.description
         priceLbl.text = String(format: "$%.02f", order.price)
         detailsLbl.text = order.orderDetails
-        orderererNameLbl.text = order.pickUpName
+        ordererNameLbl.text = order.pickUpName
         ordererNumberLbl.text = order.pickUpNumber
+        
+        detailsLbl.numberOfLines = 0
         
         blurbLbl.textAlignment = .center
         priceLbl.textAlignment = .center
         detailsLbl.textAlignment = .center
-        orderererNameLbl.textAlignment = .center
+        ordererNameLbl.textAlignment = .center
         ordererNumberLbl.textAlignment = .center
         
         ordererNumberLbl.isEditable = false
-        ordererNumberLbl.dataDetectorTypes = .all
         ordererNumberLbl.isSelectable = true
+        ordererNumberLbl.dataDetectorTypes = .phoneNumber
+        
+        ordererNameLbl.text = order.pickUpName
+        ordererNumberLbl.text = order.pickUpNumber
         
         confirmBtn.setTitle("Complete This Delivery", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)
@@ -79,7 +84,7 @@ class ConfirmPickedUpViewController: UIViewController {
         view.addSubview(confirmBtn)
         view.addSubview(pickupBtn)
         view.addSubview(dropoffBtn)
-        view.addSubview(orderererNameLbl)
+        view.addSubview(ordererNameLbl)
         view.addSubview(ordererNumberLbl)
         
         blurbLbl.snp.makeConstraints { (make) in
@@ -110,14 +115,14 @@ class ConfirmPickedUpViewController: UIViewController {
             make.centerX.width.equalTo(pickupBtn)
             make.height.equalTo(30)
         }
-        orderererNameLbl.snp.makeConstraints { (make) in
+        ordererNameLbl.snp.makeConstraints { (make) in
             make.top.equalTo(dropoffBtn.snp.bottom).offset(20)
             make.centerX.width.equalTo(blurbLbl)
             make.height.equalTo(30)
         }
         ordererNumberLbl.snp.makeConstraints { (make) in
-            make.top.equalTo(orderererNameLbl.snp.bottom).offset(20)
-            make.centerX.width.equalTo(orderererNameLbl)
+            make.top.equalTo(ordererNameLbl.snp.bottom).offset(20)
+            make.centerX.width.equalTo(ordererNameLbl)
             make.height.equalTo(30)
         }
         confirmBtn.snp.makeConstraints { (make) in

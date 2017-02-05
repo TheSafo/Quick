@@ -47,9 +47,16 @@ class ConfirmDeliveredViewController: UIViewController {
         delivererNameLbl.textAlignment = .center
         delivererNumberLbl.textAlignment = .center
         
+        detailsLbl.numberOfLines = 0
+
+        
         delivererNumberLbl.isEditable = false
-        delivererNumberLbl.dataDetectorTypes = .all
         delivererNumberLbl.isSelectable = true
+        delivererNumberLbl.dataDetectorTypes = .phoneNumber
+        
+        
+        delivererNameLbl.text = order.pickUpName
+        delivererNumberLbl.text = order.pickUpNumber
 
         confirmBtn.setTitle("I Received This Delivery", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)

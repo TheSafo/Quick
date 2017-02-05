@@ -42,7 +42,7 @@ class OrderManagement: NSObject {
     func completedDelivery(completedOrder: OrderData) {
         for (index,order) in placedOrders.enumerated() {
             if order.orderID == completedOrder.orderID {
-                placedOrders.remove(at: index)
+                claimedOrders.remove(at: index)
                 break;
             }
         }

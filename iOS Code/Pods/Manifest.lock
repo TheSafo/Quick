@@ -1,10 +1,12 @@
 PODS:
   - Alamofire (4.3.0)
+  - LocationPicker (1.0.2)
   - SnapKit (3.1.2)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - LocationPicker
   - SnapKit
   - SwiftyJSON (from `https://github.com/acegreen/SwiftyJSON.git`, branch `swift3`)
 
@@ -20,9 +22,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  LocationPicker: 240b6328b8d7799530cc0da9973ea3f02dc646f4
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 03c92e20868e613045084d1696a49f7e2d9b246d
+PODFILE CHECKSUM: e74bdbe944cb5e6af1cabca1040a2d3e94ee1ae2
 
 COCOAPODS: 1.2.0

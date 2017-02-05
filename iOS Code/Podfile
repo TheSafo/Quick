@@ -6,4 +6,5 @@ target 'Quick' do
   pod 'SnapKit'
   pod 'SwiftyJSON', :git => 'https://github.com/acegreen/SwiftyJSON.git', :branch => 'swift3'
   pod 'Alamofire', '~> 4.3'
+  pod 'LocationPicker'
 end

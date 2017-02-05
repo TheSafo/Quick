@@ -79,10 +79,11 @@ class ServerAPI: NSObject {
     func uploadOrder(order: OrderData) {
         let params = ["requester":deviceID,
                       "description":order.description,
+                      "price":order.price,
                       "fromlat":order.pickUpLocation.coordinate.latitude,
-                      "fromlong":order.pickUpLocation.coordinate.longitude,
+                      "fromlon":order.pickUpLocation.coordinate.longitude,
                       "tolat":order.dropOffLocation.coordinate.latitude,
-                      "tolong":order.dropOffLocation.coordinate.longitude,
+                      "tolon":order.dropOffLocation.coordinate.longitude,
                       "details":order.orderDetails] as [String : Any]
         
         Alamofire.request("http://10.38.44.7:42069/requests", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])

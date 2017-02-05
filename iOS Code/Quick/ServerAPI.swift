@@ -156,7 +156,7 @@ class ServerAPI: NSObject {
                     order.pickUpName = data["phone"] as? String
                     OrderManagement.sharedInstance.claimedNewOrder(newOrder: order)
                 } else {
-                    print("whoops")
+                    print("whoops HUGE ISSUE CLAIMING")
                 }
             }
     }

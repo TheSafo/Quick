@@ -17,11 +17,13 @@ class OrderManagement: NSObject {
     
     func placedNewOrder(newOrder: OrderData) {
         placedOrders.append(newOrder)
+        HomeViewController.sharedInstance.tableView.reloadData()
         HomeViewController.sharedInstance.refreshTable()
     }
     
     func claimedNewOrder(newOrder: OrderData) {
         claimedOrders.append(newOrder)
+        HomeViewController.sharedInstance.tableView.reloadData()
         HomeViewController.sharedInstance.refreshTable()
     }
     
@@ -38,6 +40,7 @@ class OrderManagement: NSObject {
         placedOrders[i].pickUpName = pickUpName
         placedOrders[i].pickUpNumber = pickUpNumber
         
+        HomeViewController.sharedInstance.tableView.reloadData()
         HomeViewController.sharedInstance.refreshTable()
     }
     

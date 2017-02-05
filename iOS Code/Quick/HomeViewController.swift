@@ -116,7 +116,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         switch indexPath.section {
         case 0:
-            nextVC = OrderDetailsViewController(order: self.claimedOrders[indexPath.row])
+            nextVC = ConfirmPickedUpViewController(order: self.claimedOrders[indexPath.row])
         case 1:
             nextVC = ConfirmDeliveredViewController(order: self.activeOrders[indexPath.row])
         case 2:

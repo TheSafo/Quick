@@ -12,6 +12,7 @@
 		4306C8EB1E46392E00D341F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8EA1E46392E00D341F6 /* Assets.xcassets */; };
 		4306C8EE1E46392E00D341F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4306C8EC1E46392E00D341F6 /* LaunchScreen.storyboard */; };
 		43AF19541E471BB60091446A /* ConfirmDeliveredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF19531E471BB60091446A /* ConfirmDeliveredViewController.swift */; };
+		43AF19561E4720230091446A /* ConfirmPickedUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF19551E4720230091446A /* ConfirmPickedUpViewController.swift */; };
 		43EB30481E464BD5008AB457 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */; };
 		43EB30491E465443008AB457 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306C8E51E46392E00D341F6 /* HomeViewController.swift */; };
 		4AA8341BBA0217A3EF4B952A /* Pods_Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283758EBA1D141BD7C202EE5 /* Pods_Quick.framework */; };
@@ -33,6 +34,7 @@
 		4306C8ED1E46392E00D341F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4306C8EF1E46392E00D341F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AF19531E471BB60091446A /* ConfirmDeliveredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmDeliveredViewController.swift; sourceTree = "<group>"; };
+		43AF19551E4720230091446A /* ConfirmPickedUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPickedUpViewController.swift; sourceTree = "<group>"; };
 		43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		63370B261E469346001D6B15 /* Quick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Quick.entitlements; sourceTree = "<group>"; };
 		63370B271E46B076001D6B15 /* OrderManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderManagement.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */,
 				63370B291E46C6F1001D6B15 /* OrderDetailsViewController.swift */,
 				43AF19531E471BB60091446A /* ConfirmDeliveredViewController.swift */,
+				43AF19551E4720230091446A /* ConfirmPickedUpViewController.swift */,
 				63C173F91E46531F00CCCE9F /* OrderData.swift */,
 				63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */,
 				63C173FD1E4668E300CCCE9F /* ServerAPI.swift */,
@@ -248,6 +251,7 @@
 			files = (
 				43AF19541E471BB60091446A /* ConfirmDeliveredViewController.swift in Sources */,
 				63C173F81E464A1F00CCCE9F /* NewOrderViewController.swift in Sources */,
+				43AF19561E4720230091446A /* ConfirmPickedUpViewController.swift in Sources */,
 				63370B281E46B076001D6B15 /* OrderManagement.swift in Sources */,
 				63370B2A1E46C6F1001D6B15 /* OrderDetailsViewController.swift in Sources */,
 				43EB30481E464BD5008AB457 /* OrderTableViewCell.swift in Sources */,

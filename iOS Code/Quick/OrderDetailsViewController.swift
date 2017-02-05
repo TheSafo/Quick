@@ -12,6 +12,26 @@ class OrderDetailsViewController: UIViewController {
 
     var order: OrderData
     
+//    var description: String
+//    var orderDetails: String
+//    var requesterID: String
+//    var price: Double
+//    var pickUpLocation: CLLocation
+//    var dropOffLocation: CLLocation
+//    
+//    var claimed: Bool
+//    var orderID: String?
+//    var acceptorID: String?
+    
+    let blurbLbl = UILabel()
+    let detailsLbl = UILabel()
+    
+    let requesterNameLbl = UILabel()
+    
+    let priceLbl = UILabel()
+
+    let directionsLinkLbl = UILabel()
+    
     init(order: OrderData) {
         self.order = order
         super.init(nibName: nil, bundle: nil)
@@ -24,7 +44,12 @@ class OrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
+        view.addSubview(blurbLbl)
+        view.addSubview(detailsLbl)
+        view.addSubview(requesterNameLbl)
+        view.addSubview(priceLbl)
+        view.addSubview(directionsLinkLbl)
     }
 
     override func didReceiveMemoryWarning() {

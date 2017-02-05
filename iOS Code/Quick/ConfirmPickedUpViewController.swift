@@ -15,7 +15,7 @@ class ConfirmPickedUpViewController: UIViewController {
     var order: OrderData
     
     let blurbLbl = UILabel()
-    let detailsLbl = UILabel()
+    let detailsLbl = UITextView()
     
     let priceLbl = UILabel()
     
@@ -49,13 +49,19 @@ class ConfirmPickedUpViewController: UIViewController {
         ordererNameLbl.text = order.pickUpName
         ordererNumberLbl.text = order.pickUpNumber
         
-        detailsLbl.numberOfLines = 0
+//        detailsLbl.numberOfLines = 0
         
         blurbLbl.textAlignment = .center
         priceLbl.textAlignment = .center
-        detailsLbl.textAlignment = .center
+//        detailsLbl.textAlignment = .center
         ordererNameLbl.textAlignment = .center
         ordererNumberLbl.textAlignment = .center
+        
+        
+        detailsLbl.textAlignment = .left
+        detailsLbl.isScrollEnabled = true
+        detailsLbl.isEditable = false
+        
         
         ordererNumberLbl.isEditable = false
         ordererNumberLbl.isSelectable = true

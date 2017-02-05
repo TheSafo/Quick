@@ -22,7 +22,7 @@ class OrderTableViewCell: UITableViewCell {
         //Configure Views
         distanceLbl.textAlignment = .right
         
-        priceLbl.textColor = .green
+        priceLbl.textColor = .black
         
         //Add Subviews
         contentView.addSubview(distanceLbl)

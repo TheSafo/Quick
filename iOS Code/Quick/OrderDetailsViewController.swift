@@ -13,7 +13,7 @@ class OrderDetailsViewController: UIViewController {
     var order: OrderData
     
     let blurbLbl = UILabel()
-    let detailsLbl = UILabel()
+    let detailsLbl = UITextView()
     
 //    let requesterNameLbl = UILabel()
     
@@ -48,8 +48,10 @@ class OrderDetailsViewController: UIViewController {
         blurbLbl.textAlignment = .center
         priceLbl.textAlignment = .center
 //        requesterNameLbl.textAlignment = .center
-        detailsLbl.textAlignment = .center
-        detailsLbl.numberOfLines = 0
+        
+        detailsLbl.textAlignment = .left
+        detailsLbl.isScrollEnabled = true
+        detailsLbl.isEditable = false
 
         confirmBtn.setTitle("Take This Order", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)

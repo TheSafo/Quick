@@ -13,7 +13,7 @@ class ConfirmDeliveredViewController: UIViewController {
     var order: OrderData
     
     let blurbLbl = UILabel()
-    let detailsLbl = UILabel()
+    let detailsLbl = UITextView()
     
     let delivererNumberLbl = UITextView()
     let delivererNameLbl = UILabel()
@@ -43,11 +43,13 @@ class ConfirmDeliveredViewController: UIViewController {
         
         blurbLbl.textAlignment = .center
         priceLbl.textAlignment = .center
-        detailsLbl.textAlignment = .center
         delivererNameLbl.textAlignment = .center
         delivererNumberLbl.textAlignment = .center
         
-        detailsLbl.numberOfLines = 0
+        detailsLbl.textAlignment = .left
+        detailsLbl.isScrollEnabled = true
+        detailsLbl.isEditable = false
+//        detailsLbl.numberOfLines = 0
 
         
         delivererNumberLbl.isEditable = false

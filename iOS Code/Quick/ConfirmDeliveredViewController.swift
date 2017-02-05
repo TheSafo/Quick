@@ -61,7 +61,7 @@ class ConfirmDeliveredViewController: UIViewController {
 
         
         delivererNumberLbl.isEditable = false
-//        delivererNumberLbl.isSelectable = true
+//        delivererNumberLbl.isSelectable = false
         delivererNumberLbl.dataDetectorTypes = .phoneNumber
         
         

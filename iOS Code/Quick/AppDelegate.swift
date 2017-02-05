@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.makeKeyAndVisible()
         
 
-        ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo")
+        ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo", number: "9543102278")
         CurrentLocation.sharedInstance.startLocationManager()
         
         return true

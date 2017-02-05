@@ -22,6 +22,7 @@ class ServerAPI: NSObject {
     }
 
     var name: String?
+    var number: String?
     var notificationToken: String?
     
     var userRegistered = false
@@ -31,13 +32,14 @@ class ServerAPI: NSObject {
         
         userRegistered = true
         if let name = self.name {
-            self.registerUser(name: name)
+            self.registerUser(name: name, number: number)
         }
     }
     
-    func registerUser(name: String) {
+    func registerUser(name: String, number: String?) {
         
         self.name = name
+        self.number = number
 
         guard userRegistered else {
             print("User not registered try again later!")

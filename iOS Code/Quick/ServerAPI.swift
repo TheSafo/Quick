@@ -99,4 +99,29 @@ class ServerAPI: NSObject {
                 }
         }
     }
+    
+    func getClosestOrders()->[OrderData]? {
+        guard let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate else {
+            print("NO LOCATION!!!!!!!")
+            return nil;
+        }
+
+        let params = ["lat":currentLocation.latitude,
+                      "lon":currentLocation.longitude] as [String : Any]
+        
+        //results is the key
+        //List of dictionaries
+        //dictionaries contain all the order
+        var orders: [OrderData]?
+        Alamofire.request("http://10.38.44.7:42069/requests", method: .get, parameters: params, encoding: URLEncoding.default, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                if let data = response.result.value {
+                    print(data)
+                } else {
+                    print("whoops")
+                }
+            }
+        return orders
+    }
 }

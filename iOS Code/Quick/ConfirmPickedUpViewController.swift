@@ -156,6 +156,8 @@ class ConfirmPickedUpViewController: UIViewController {
     
     func confirmBtnPressed() {
         print("User completed order!")
+        
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     func pickupBtnPressed() {

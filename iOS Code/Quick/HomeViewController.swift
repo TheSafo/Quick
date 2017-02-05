@@ -12,6 +12,8 @@ import CoreLocation
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     static let sharedInstance = HomeViewController()
     
+    
+    
     let tableView = UITableView()
     var availableOrders: [OrderData] = []
 
@@ -35,15 +37,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func refreshTable() {
-        if let availableOrders = ServerAPI.sharedInstance.getClosestOrders() {
-            self.availableOrders = availableOrders
-        } else {
-            for i in 0..<12 {
-                let bsLoc = CLLocation(latitude: 100, longitude: 100)
-                let bsData = OrderData(description: "Desc \(i)", orderDetails: "Details \(i)", requestID: "", price: 12, pickUpLocation: bsLoc, dropOffLocation: bsLoc)
-                availableOrders.append(bsData)
-            }
-        }
+        ServerAPI.sharedInstance.getClosestOrders()
+//        if let availableOrders = ServerAPI.sharedInstance.getClosestOrders() {
+//            self.availableOrders = availableOrders
+//        }
+        tableView.reloadData()
     }
 
 

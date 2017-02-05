@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Override point for customization after application launch.
         
-        let rootVC = HomeViewController()
+        let rootVC = HomeViewController.sharedInstance
         let navVC = UINavigationController(rootViewController: rootVC)
         
         navVC.navigationBar.isTranslucent = false

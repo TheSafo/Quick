@@ -100,41 +100,50 @@ class ServerAPI: NSObject {
         }
     }
     
-    func getClosestOrders()->[OrderData]? {
+//    func getClosestOrders()->[OrderData]? {
+    func getClosestOrders() {
         guard let currentLocation = CurrentLocation.sharedInstance.currentLocation?.coordinate else {
             print("NO LOCATION!!!!!!!")
-            return nil;
+//            return nil;
+            return
         }
 
         let params = ["id": ServerAPI.sharedInstance.deviceID, "lat":currentLocation.latitude,
                       "lon":currentLocation.longitude] as [String : Any]
-        print("SDFSDFSD")
-        //results is the key
-        //List of dictionaries
-        //dictionaries contain all the order
+
         var orders: [OrderData]?
         Alamofire.request("http://10.38.44.7:42069/requests", method: .get, parameters: params, encoding: URLEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-                print("!!!!!!!!!!!")
-                print(response)
-                print("!!!!!!!!!")
-                if let data = response.result.value {
-                    print("!!!!!!!!")
-                    print("!!!!!!!!")
-                    print(data)
-                    print("!!!!!!!!")
-                    print("!!!!!!!!")
+                if let data = response.result.value as? [String:AnyObject],
+                let results = data["results"] as? [[String:AnyObject]] {
+                    print("RESULT SIZE: ", results.count)
+                    for result in results {
+                        let pickUpLocation = CLLocation.init(latitude: Double(result["fromlat"] as! NSNumber), longitude: Double(result["fromlon"] as! NSNumber))
+                        let dropOffLocation = CLLocation.init(latitude: Double(result["tolat"] as! NSNumber), longitude: Double(result["tolon"] as! NSNumber))
+                        
+                        let order = OrderData(description: result["description"] as! String, orderDetails: result["details"] as! String, requestID: result["requester"] as! String, price: Double(result["price"] as! NSNumber), pickUpLocation: pickUpLocation, dropOffLocation: dropOffLocation)
+                        
+                        if orders == nil {
+                            orders = [OrderData]()
+                        }
+                        orders!.append(order)
+                    }
+                    if let orders = orders {
+                        HomeViewController.sharedInstance.availableOrders = orders
+                        HomeViewController.sharedInstance.tableView.reloadData()
+//                        HomeViewController.sharedInstance.refreshTable()
+                    }
                 } else {
                     print("whoops")
                 }
             }
-        return orders
+//        return orders
     }
     
     func claimOrder(order: OrderData) {
         let params = ["id":order.requesterID,
-                      "acceptor":ServerAPI.sharedInstance.deviceID]
+                      "accepter":ServerAPI.sharedInstance.deviceID]
             as [String : Any]
         
         Alamofire.request("http://10.38.44.7:42069/requests", method: .put, parameters: params, encoding: JSONEncoding.default, headers: [:])

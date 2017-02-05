@@ -37,6 +37,8 @@ class OrderManagement: NSObject {
         placedOrders[i].acceptorID = acceptorID
         placedOrders[i].pickUpName = pickUpName
         placedOrders[i].pickUpNumber = pickUpNumber
+        
+        HomeViewController.sharedInstance.refreshTable()
     }
     
     func completedDelivery(completedOrder: OrderData) {

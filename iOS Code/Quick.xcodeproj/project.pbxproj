@@ -86,18 +86,18 @@
 			children = (
 				63370B261E469346001D6B15 /* Quick.entitlements */,
 				4306C8E31E46392E00D341F6 /* AppDelegate.swift */,
-				4306C8E51E46392E00D341F6 /* HomeViewController.swift */,
-				43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */,
+				63C173FD1E4668E300CCCE9F /* ServerAPI.swift */,
+				63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */,
+				63370B271E46B076001D6B15 /* OrderManagement.swift */,
+				63C173F91E46531F00CCCE9F /* OrderData.swift */,
+				4306C8EF1E46392E00D341F6 /* Info.plist */,
 				4306C8E71E46392E00D341F6 /* Main.storyboard */,
 				4306C8EA1E46392E00D341F6 /* Assets.xcassets */,
 				4306C8EC1E46392E00D341F6 /* LaunchScreen.storyboard */,
-				4306C8EF1E46392E00D341F6 /* Info.plist */,
+				4306C8E51E46392E00D341F6 /* HomeViewController.swift */,
+				43EB30471E464BD5008AB457 /* OrderTableViewCell.swift */,
 				63C173F71E464A1F00CCCE9F /* NewOrderViewController.swift */,
 				63370B291E46C6F1001D6B15 /* OrderDetailsViewController.swift */,
-				63C173F91E46531F00CCCE9F /* OrderData.swift */,
-				63C173FB1E465CAB00CCCE9F /* CurrentLocation.swift */,
-				63C173FD1E4668E300CCCE9F /* ServerAPI.swift */,
-				63370B271E46B076001D6B15 /* OrderManagement.swift */,
 			);
 			path = Quick;
 			sourceTree = "<group>";

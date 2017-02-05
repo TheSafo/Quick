@@ -78,6 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("Got a notification: ", response)
         let aps = response.notification.request.content.userInfo["aps"] as! [String: AnyObject]
         
+        print(aps)
+        
         if (aps["content-available"] as? NSString)?.integerValue == 1 {
             //Silent Notification - Do stuff with the data
             print("SILENT")
@@ -88,17 +90,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("Dont know what happens here")
-        let aps = notification.request.content.userInfo["aps"] as! [String: AnyObject]
+        let userInfo = notification.request.content.userInfo as! [String: AnyObject]
         
-        if (aps["content-available"] as? NSString)?.integerValue == 1 {
-            //Silent Notification - Do stuff with the data
-            print("SILENT")
-        } else {
-            print("NORMAL NOTIFICATION")
+//        print(aps)
+        print(notification.request.content.userInfo)
+        
+        if (userInfo["notification_type"] as! NSNumber) == 1 {
+            print("here")
+            OrderManagement.sharedInstance.placedOrderClaimed(orderID: Int(userInfo["id"] as! NSNumber), acceptorID: userInfo["accepter"] as! String, pickUpName: userInfo["name"] as! String, pickUpNumber: userInfo["phone"] as! String)
         }
         
+//        [AnyHashable("phone"): 1234567890, AnyHashable("name"): Marlena Fejzo, AnyHashable("notification_type"): 1, AnyHashable("id"): 61, AnyHashable("aps"): {
+//            alert = "Order Accepted!";
+//            }]
+        
         completionHandler([.sound, .alert])
-
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

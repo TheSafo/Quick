@@ -50,7 +50,7 @@ class ConfirmDeliveredViewController: UIViewController {
         delivererNumberLbl.isEditable = false
         delivererNumberLbl.dataDetectorTypes = .all
 
-        confirmBtn.setTitle("", for: .normal)
+        confirmBtn.setTitle("I Received This Delivery", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)
         confirmBtn.addTarget(self, action: #selector(confirmBtnPressed), for: .touchUpInside)
         

@@ -25,17 +25,17 @@ class OrderManagement: NSObject {
         HomeViewController.sharedInstance.tableView.reloadData()
     }
     
-    func placedOrderClaimed(updatedOrder: OrderData) {
+    func placedOrderClaimed(orderID: Int, acceptorID: String, pickUpName: String, pickUpNumber: String) {
         var i = 0
         for (index,order) in placedOrders.enumerated() {
-            if order.orderID == updatedOrder.orderID {
+            if order.orderID == orderID {
                 i = index
                 break;
             }
         }
         placedOrders[i].claimed = true;
-        placedOrders[i].acceptorID = updatedOrder.acceptorID;
-        placedOrders[i].pickUpName = updatedOrder.pickUpName;
-        placedOrders[i].pickUpNumber = updatedOrder.pickUpNumber;
+        placedOrders[i].acceptorID = acceptorID
+        placedOrders[i].pickUpName = pickUpName
+        placedOrders[i].pickUpNumber = pickUpNumber
     }
 }

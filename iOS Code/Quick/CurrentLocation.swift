@@ -15,6 +15,8 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
+    
+    var lastTime = 0
 
     func startLocationManager() {
         locationManager.requestAlwaysAuthorization()
@@ -27,6 +29,13 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+                
+        if abs(lastTime - Timestamp()) < 10 {
+            return
+        }
+        
+        lastTime = Timestamp()
+        
         print("Got location update! \(locations[0])")
         currentLocation = locations[0]
         //SERVER STUFF
@@ -34,4 +43,11 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
             ServerAPI.sharedInstance.sendLatestLocation()
         }
     }
+    
+
+}
+
+
+func Timestamp() -> Int {
+    return Int(round(NSDate().timeIntervalSince1970))
 }

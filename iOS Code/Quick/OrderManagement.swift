@@ -16,6 +16,7 @@ class OrderManagement: NSObject {
     var claimedOrders = [OrderData]()
     
     func placedNewOrder(newOrder: OrderData) {
+        
         placedOrders.append(newOrder)
     }
     

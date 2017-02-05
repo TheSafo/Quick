@@ -32,11 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let rootVC = HomeViewController()
         let navVC = UINavigationController(rootViewController: rootVC)
         
+        navVC.navigationBar.isTranslucent = false
+        navVC.navigationBar.barTintColor = UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1)
+        navVC.navigationBar.tintColor = .yellow
+        
         let profBtn = UIButton(type: .custom)
         profBtn.setImage(UIImage(named: "user")?.withRenderingMode(.alwaysTemplate), for: .normal)
         profBtn.addTarget(rootVC, action: #selector(rootVC.profButtonPressed), for: .touchUpInside)
         profBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         profBtn.imageEdgeInsets = UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5)
+        profBtn.tintColor = .yellow
         rootVC.navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: profBtn)]
         
         let newOrderBtn = UIButton(type: .custom)
@@ -44,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         newOrderBtn.addTarget(rootVC, action: #selector(rootVC.orderButtonPressed), for: .touchUpInside)
         newOrderBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         newOrderBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+        newOrderBtn.tintColor = .yellow
         rootVC.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: newOrderBtn)]
         
         window = UIWindow(frame: UIScreen.main.bounds)

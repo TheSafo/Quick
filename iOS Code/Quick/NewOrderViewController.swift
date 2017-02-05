@@ -33,16 +33,21 @@ class NewOrderViewController: UIViewController {
             view.addGestureRecognizer(tap)
         
         //Config
+        view.backgroundColor = .white
+        
         descInput.isEditable = true
+        descInput.delegate = self
         
         blurbInput.borderStyle = .roundedRect
         blurbInput.placeholder = "Blurb"
         blurbInput.returnKeyType = .done
+        blurbInput.delegate = self
         
         priceInput.borderStyle = .roundedRect
         priceInput.placeholder = "Delivery Charge"
         priceInput.keyboardType = .numbersAndPunctuation
         priceInput.returnKeyType = .done
+        priceInput.delegate = self
         
         pickupLocBtn.backgroundColor = .orange
         pickupLocBtn.setTitle("📍Pickup location", for: .normal)
@@ -66,7 +71,7 @@ class NewOrderViewController: UIViewController {
         
         //Constrain
         blurbInput.snp.makeConstraints { (make) in
-            make.top.equalTo(view).offset(64+20)//nav bar height
+            make.top.equalTo(view).offset(64)//nav bar height
             make.centerX.equalTo(view)
             make.width.equalTo(view).multipliedBy(0.6)
             make.height.equalTo(50)
@@ -96,10 +101,7 @@ class NewOrderViewController: UIViewController {
             make.width.centerX.equalTo(blurbInput)
             make.height.equalTo(50)
         }
-        
-//        blurbInput.layer.borderWidth = 1; blurbInput.layer.borderColor = UIColor.red.cgColor
-//        priceInput.layer.borderWidth = 1; priceInput.layer.borderColor = UIColor.blue.cgColor
-        descInput.layer.borderWidth = 1; descInput.layer.borderColor = UIColor.green.cgColor
+
         
         setUpPicker()
 

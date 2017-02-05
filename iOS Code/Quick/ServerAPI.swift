@@ -88,12 +88,12 @@ class ServerAPI: NSObject {
         
         Alamofire.request("http://10.38.44.7:42069/requests", method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
-            .responseJSON { response in
+            .responseString { response in
                 print("REQ: \(response.request as Any)")  // original URL request
                 print("Resp: \(response.response as Any)")// URL response
                 print("Resp value: \(response.result.value as Any)")   // result of response serialization
                 //Update the order's orderID, then
-                if let orderID = response.result.value as? String {
+                if let orderID = response.result.value {
                     order.orderID = orderID
                     OrderManagement.sharedInstance.placedNewOrder(newOrder: order)
                 }

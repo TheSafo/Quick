@@ -17,12 +17,12 @@ class OrderManagement: NSObject {
     
     func placedNewOrder(newOrder: OrderData) {
         placedOrders.append(newOrder)
-        HomeViewController.sharedInstance.tableView.reloadData()
+        HomeViewController.sharedInstance.refreshTable()
     }
     
     func claimedNewOrder(newOrder: OrderData) {
         claimedOrders.append(newOrder)
-        HomeViewController.sharedInstance.tableView.reloadData()
+        HomeViewController.sharedInstance.refreshTable()
     }
     
     func placedOrderClaimed(orderID: Int, acceptorID: String, pickUpName: String, pickUpNumber: String) {
@@ -40,12 +40,13 @@ class OrderManagement: NSObject {
     }
     
     func completedDelivery(completedOrder: OrderData) {
-        for (index,order) in placedOrders.enumerated() {
+        for (index,order) in claimedOrders.enumerated() {
             if order.orderID == completedOrder.orderID {
                 claimedOrders.remove(at: index)
                 break;
             }
         }
+        HomeViewController.sharedInstance.tableView.reloadData()
     }
     
     func receivedDelivery(receivedOrder: OrderData) {
@@ -55,5 +56,6 @@ class OrderManagement: NSObject {
                 break;
             }
         }
+        HomeViewController.sharedInstance.tableView.reloadData()
     }
 }

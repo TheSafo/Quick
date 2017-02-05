@@ -50,7 +50,7 @@ class NewOrderViewController: UIViewController {
         descInput.layer.cornerRadius = 8
         
 //        blurbInput.borderStyle = .roundedRect
-        blurbInput.placeholder = "  Blurb"
+        blurbInput.placeholder = "  Short Description"
         blurbInput.returnKeyType = .done
         blurbInput.delegate = self
         blurbInput.backgroundColor = .white//UIColor(colorLiteralRed: 255.0/255.0, green: 20.0/255.0, blue: 0.0/255.0, alpha: 1.0)

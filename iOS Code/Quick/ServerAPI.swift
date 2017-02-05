@@ -106,16 +106,19 @@ class ServerAPI: NSObject {
             return nil;
         }
 
-        let params = ["lat":currentLocation.latitude,
+        let params = ["id": ServerAPI.sharedInstance.deviceID, "lat":currentLocation.latitude,
                       "lon":currentLocation.longitude] as [String : Any]
-        
+        print("SDFSDFSD")
         //results is the key
         //List of dictionaries
         //dictionaries contain all the order
         var orders: [OrderData]?
-        Alamofire.request("http://10.38.44.7:42069/requests", method: .get, parameters: params, encoding: URLEncoding.default, headers: nil)
+        Alamofire.request("http://10.38.44.7:42069/requests", method: .get, parameters: params, encoding: URLEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
+                print("!!!!!!!!!!!")
+                print(response)
+                print("!!!!!!!!!")
                 if let data = response.result.value {
                     print("!!!!!!!!")
                     print("!!!!!!!!")
@@ -127,5 +130,28 @@ class ServerAPI: NSObject {
                 }
             }
         return orders
+    }
+    
+    func claimOrder(order: OrderData) {
+        let params = ["id":order.requesterID,
+                      "acceptor":ServerAPI.sharedInstance.deviceID]
+            as [String : Any]
+        
+        Alamofire.request("http://10.38.44.7:42069/requests", method: .put, parameters: params, encoding: JSONEncoding.default, headers: [:])
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                print("!!!!!!!!!!!")
+                print(response)
+                print("!!!!!!!!!")
+                if let data = response.result.value {
+                    print("!!!!!!!!")
+                    print("!!!!!!!!")
+                    print(data)
+                    print("!!!!!!!!")
+                    print("!!!!!!!!")
+                } else {
+                    print("whoops")
+                }
+            }
     }
 }

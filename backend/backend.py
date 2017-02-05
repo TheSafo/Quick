@@ -78,26 +78,30 @@ class Request(Resource):
         conn.commit()
         request_id = cur.fetchone()[0]
         cur.execute("""SELECT DISTINCT l.id AS id FROM quickschemas.locations l WHERE l.time BETWEEN %s - (20 * interval '1 minute') AND %s
-                                              AND ST_DWithin(l.pt, ST_SetSRID(ST_Point(%s, %s),4326)::geography, 250)""", (t, t, fromlon, fromlat))
+                                              AND ST_DWithin(l.pt, ST_SetSRID(ST_Point(%s, %s),4326)::geography, 250)
+                                              AND l.id!=%s""", (t, t, fromlon, fromlat, requester))
         for dev_id in cur.fetchall():
-            cur.execute("""SELECT COUNT(l2.id) FILTER (WHERE ST_DWithin(l2.pt, ST_SetSRID(ST_Point(%s, %s),4326)::geography, 250)
-                                                      AND to_char(l.time, 'DD:MM:YY')=to_char(l2.time, 'DD:MM:YY')), COUNT(l.id)
-                                FROM quickschemas.locations l, quickschemas.locations l2 WHERE (EXTRACT(DOW FROM TIMESTAMP l.time)=EXTRACT(DOW FROM TIMESTAMP %s)
-                                OR EXTRACT(DOW FROM TIMESTAMP l.time)+1=EXTRACT(DOW FROM TIMESTAMP %s))
-                                AND ((EXTRACT(HOUR FROM TIMESTAMP %s)*60+EXTRACT(MINUTE FROM TIMESTAMP %s))
-                                - (EXTRACT(HOUR FROM TIMESTAMP l.time)*60+EXTRACT(MINUTE FROM TIMESTAMP l.time)
-                                BETWEEN 0 AND 60 
-                                OR (EXTRACT(HOUR FROM TIMESTAMP %s)*60+EXTRACT(MINUTE FROM TIMESTAMP %s))
-                                - (EXTRACT(HOUR FROM TIMESTAMP l.time)*60+EXTRACT(MINUTE FROM TIMESTAMP l.time)
-                                BETWEEN 1380 AND 1439)
-                                AND l.id=%s""", (tolon, tolat, t, t, t, t, t, t, dev_id))
-            dev_counts = cur.fetchone()
-            if dev_counts[1] < 3 or dev_counts[0]/dev_counts[1] > 0.5:
-                cur.execute("SELECT p.token FROM quickschemas.profiles p WHERE p.id = %s", (dev_id, ))
-                tokens.append(cur.fetchone()[0])
-
-        print len(tokens)
-        payload = Payload(alert="Delivery Available!", custom=data)
+            # cur.execute("""SELECT COUNT(l2.id) FILTER (WHERE ST_DWithin(l2.pt, ST_SetSRID(ST_Point(%s, %s),4326)::geography, 250)
+            #                                           AND to_char(l.time, 'DD:MM:YY')=to_char(l2.time, 'DD:MM:YY')), COUNT(l.id)
+            #                     FROM quickschemas.locations l, quickschemas.locations l2 WHERE (EXTRACT(DOW FROM TIMESTAMP l.time)=EXTRACT(DOW FROM TIMESTAMP %s)
+            #                     OR EXTRACT(DOW FROM TIMESTAMP l.time)+1=EXTRACT(DOW FROM TIMESTAMP %s))
+            #                     AND ((EXTRACT(HOUR FROM TIMESTAMP %s)*60+EXTRACT(MINUTE FROM TIMESTAMP %s))
+            #                     - (EXTRACT(HOUR FROM TIMESTAMP l.time)*60+EXTRACT(MINUTE FROM TIMESTAMP l.time)
+            #                     BETWEEN 0 AND 60 
+            #                     OR (EXTRACT(HOUR FROM TIMESTAMP %s)*60+EXTRACT(MINUTE FROM TIMESTAMP %s))
+            #                     - (EXTRACT(HOUR FROM TIMESTAMP l.time)*60+EXTRACT(MINUTE FROM TIMESTAMP l.time)
+            #                     BETWEEN 1380 AND 1439)
+            #                     AND l.id=%s""", (tolon, tolat, t, t, t, t, t, t, dev_id))
+            # dev_counts = cur.fetchone()
+            # if dev_counts[1] < 3 or dev_counts[0]/dev_counts[1] > 0.5:
+            #     cur.execute("SELECT p.token FROM quickschemas.profiles p WHERE p.id = %s", (dev_id, ))
+            #     tokens.append(cur.fetchone()[0])
+            cur.execute("SELECT p.token FROM quickschemas.profiles p WHERE p.id = %s", (dev_id, ))
+            tokens.append(cur.fetchone()[0])
+        push_data = {'notification_type':2, 'data': data, 'id': request_id}
+        payload = Payload(alert="En Route Delivery Available!", custom=push_data)
+        for req_token in tokens:
+            apns.gateway_server.send_notification(req_token, payload)
         return request_id
 
     def get(self):
@@ -112,7 +116,9 @@ class Request(Resource):
                               ST_SetSRID(ST_Point(%s, %s),4326)::geography, 500) 
                               AND r.accepter IS NULL
                               AND r.requester!=%s
-                              AND r.time BETWEEN %s - (3000 * interval '1 minute') AND %s""", (lon, lat, device_id, check_time, check_time))
+                              AND r.time BETWEEN %s - (3000 * interval '1 minute') AND %s
+                              ORDER BY ST_Distance(ST_SetSRID(ST_Point(r.fromlon, r.fromlat),4326)::geography,
+                              ST_SetSRID(ST_Point(%s, %s),4326)::geography) ASC""", (lon, lat, device_id, check_time, check_time, lon, lat))
         return {'results': [dict(zip([column[0] for column in cur.description], row)) for row in cur.fetchall()]}
 
     def put(self):
@@ -120,7 +126,7 @@ class Request(Resource):
         request_id = data['id']
         accepter = data['accepter']
         cur.execute("""UPDATE quickschemas.requests SET accepter=%s WHERE id=%s""", (accepter, request_id))
-        push_data = {'id':request_id, 'notification_type':1}
+        push_data = {'id':request_id, 'notification_type':1, 'accepter':accepter}
         cur.execute("SELECT p.name, p.phone FROM quickschemas.profiles p WHERE p.id=%s", (accepter, ))
         (push_data['name'], push_data['phone']) = cur.fetchone()
         payload = Payload(alert="Order Accepted!", custom=push_data)

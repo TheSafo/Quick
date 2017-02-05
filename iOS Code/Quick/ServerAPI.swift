@@ -117,7 +117,11 @@ class ServerAPI: NSObject {
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 if let data = response.result.value {
+                    print("!!!!!!!!")
+                    print("!!!!!!!!")
                     print(data)
+                    print("!!!!!!!!")
+                    print("!!!!!!!!")
                 } else {
                     print("whoops")
                 }

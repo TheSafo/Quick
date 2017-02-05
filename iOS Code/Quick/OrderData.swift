@@ -22,6 +22,8 @@ class OrderData {
     var orderID: String?
     var acceptorID: String?
     
+    var pickUpNumber: String?
+    var pickUpName: String?
     
     init(description: String, orderDetails: String, requestID: String, price: Double, pickUpLocation: CLLocation, dropOffLocation: CLLocation) {
         self.description = description
@@ -41,7 +43,7 @@ class OrderData {
         if self.claimed == false {
             self.claimed = true
             
-            self.acceptorID = UUID().uuidString
+            self.acceptorID = ServerAPI.sharedInstance.deviceID
             //INSERT SERVER STUFF
             return true
         }

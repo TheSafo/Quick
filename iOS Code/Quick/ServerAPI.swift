@@ -149,13 +149,13 @@ class ServerAPI: NSObject {
         Alamofire.request("http://10.38.44.7:42069/requests", method: .put, parameters: params, encoding: JSONEncoding.default, headers: [:])
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-                if let data = response.result.value {
+                if let data = response.result.value as? [String:AnyObject] {
                     print("HERE!!")
                     print(data)
                     order.claimed = true
                     order.acceptorID = ServerAPI.sharedInstance.deviceID
-                    order.pickUpNumber = "954"
-                    order.pickUpName = "david"
+                    order.pickUpNumber = data["name"] as? String
+                    order.pickUpName = data["phone"] as? String
                     OrderManagement.sharedInstance.claimedNewOrder(newOrder: order)
                 } else {
                     print("whoops")

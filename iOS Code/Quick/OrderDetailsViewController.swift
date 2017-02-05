@@ -145,6 +145,9 @@ class OrderDetailsViewController: UIViewController {
     func confirmBtnPressed() {
         //user is about to accept order
         ServerAPI.sharedInstance.claimOrder(order: order)
+        
+        let _ = self.navigationController?.popViewController(animated: true)
+
     }
     
     func pickupBtnPressed() {

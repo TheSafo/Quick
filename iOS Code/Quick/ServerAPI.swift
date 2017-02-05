@@ -150,7 +150,13 @@ class ServerAPI: NSObject {
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 if let data = response.result.value {
+                    print("HERE!!")
                     print(data)
+                    order.claimed = true
+                    order.acceptorID = ServerAPI.sharedInstance.deviceID
+                    order.pickUpNumber = "954"
+                    order.pickUpName = "david"
+                    OrderManagement.sharedInstance.claimedNewOrder(newOrder: order)
                 } else {
                     print("whoops")
                 }

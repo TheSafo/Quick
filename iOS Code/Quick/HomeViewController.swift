@@ -15,8 +15,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     let tableView = UITableView()
-    var claimedOrders: [OrderData] = []
-    var activeOrders: [OrderData] = []
+    var claimedOrders: [OrderData] {
+        get {
+            return OrderManagement.sharedInstance.claimedOrders
+        }
+        set {
+             OrderManagement.sharedInstance.claimedOrders = newValue
+        }
+    }
+    var activeOrders: [OrderData] {
+        get {
+            return OrderManagement.sharedInstance.placedOrders
+        }
+        set {
+            OrderManagement.sharedInstance.placedOrders = newValue
+        }
+    }
     var availableOrders: [OrderData] = []
 
     override func viewDidLoad() {

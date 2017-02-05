@@ -17,10 +17,12 @@ class OrderManagement: NSObject {
     
     func placedNewOrder(newOrder: OrderData) {
         placedOrders.append(newOrder)
+        HomeViewController.sharedInstance.tableView.reloadData()
     }
     
     func claimedNewOrder(newOrder: OrderData) {
         claimedOrders.append(newOrder)
+        HomeViewController.sharedInstance.tableView.reloadData()
     }
     
     func placedOrderClaimed(updatedOrder: OrderData) {

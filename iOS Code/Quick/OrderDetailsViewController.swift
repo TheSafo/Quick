@@ -50,7 +50,13 @@ class OrderDetailsViewController: UIViewController {
 //        requesterNameLbl.textAlignment = .center
         detailsLbl.textAlignment = .center
 
-        confirmBtn.setTitle("Take This Order", for: .normal)
+        if !order.claimed {
+            confirmBtn.setTitle("Take This Order", for: .normal)
+        }
+        else {
+            confirmBtn.setTitle("Mark Completed", for: .normal)
+        }
+        
         confirmBtn.setTitleColor(.black, for: .normal)
         confirmBtn.addTarget(self, action: #selector(confirmBtnPressed), for: .touchUpInside)
         
@@ -143,7 +149,12 @@ class OrderDetailsViewController: UIViewController {
     }
 
     func confirmBtnPressed() {
-        
+        if !order.claimed {
+            //user is about to accept order
+        }
+        else {
+            //user is about to mark their claimed order as delivered
+        }
     }
     
     func pickupBtnPressed() {

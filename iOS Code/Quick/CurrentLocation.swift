@@ -29,12 +29,13 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        if abs(lastTime - Timestamp()) > 4 {
+            HomeViewController.sharedInstance.refreshTable()
+        }
         
         if abs(lastTime - Timestamp()) < 10 {
             return
         }
-        HomeViewController.sharedInstance.refreshTable()
         
         lastTime = Timestamp()
         

@@ -152,8 +152,8 @@ class ServerAPI: NSObject {
                 if let data = response.result.value as? [String:AnyObject] {
                     order.claimed = true
                     order.acceptorID = ServerAPI.sharedInstance.deviceID
-                    order.pickUpNumber = data["name"] as? String
-                    order.pickUpName = data["phone"] as? String
+                    order.pickUpName = data["name"] as? String
+                    order.pickUpNumber = data["phone"] as? String
                     OrderManagement.sharedInstance.claimedNewOrder(newOrder: order)
                 } else {
                     print("whoops HUGE ISSUE CLAIMING")

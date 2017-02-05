@@ -38,4 +38,22 @@ class OrderManagement: NSObject {
         placedOrders[i].pickUpName = pickUpName
         placedOrders[i].pickUpNumber = pickUpNumber
     }
+    
+    func completedDelivery(completedOrder: OrderData) {
+        for (index,order) in placedOrders.enumerated() {
+            if order.orderID == completedOrder.orderID {
+                placedOrders.remove(at: index)
+                break;
+            }
+        }
+    }
+    
+    func receivedDelivery(receivedOrder: OrderData) {
+        for (index,order) in placedOrders.enumerated() {
+            if order.orderID == receivedOrder.orderID {
+                placedOrders.remove(at: index)
+                break;
+            }
+        }
+    }
 }

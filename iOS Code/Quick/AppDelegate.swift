@@ -56,8 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
         
-
-        ServerAPI.sharedInstance.registerUser(name: "Marlena Fejzo", number: "1234567890")
+        if ((UIDevice.current.identifierForVendor!).uuidString == "B68EFFDF-EFB5-475F-94A9-ABDB555EC894") {
+            ServerAPI.sharedInstance.registerUser(name: "David Branse", number: "9547329810")
+        } else {
+            ServerAPI.sharedInstance.registerUser(name: "Jake Saf", number: "3108717017")
+        }
         CurrentLocation.sharedInstance.startLocationManager()
         
         return true

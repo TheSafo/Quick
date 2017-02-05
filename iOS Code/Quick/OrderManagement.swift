@@ -23,6 +23,15 @@ class OrderManagement: NSObject {
     
     func claimedNewOrder(newOrder: OrderData) {
         claimedOrders.append(newOrder)
+        
+        for (index,order) in HomeViewController.sharedInstance.availableOrders.enumerated() {
+            if order.orderID == newOrder.orderID {
+                HomeViewController.sharedInstance.availableOrders.remove(at: index)
+                break;
+            }
+        }
+
+
         HomeViewController.sharedInstance.tableView.reloadData()
         HomeViewController.sharedInstance.refreshTable()
     }

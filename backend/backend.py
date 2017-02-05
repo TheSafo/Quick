@@ -79,7 +79,8 @@ class Request(Resource):
         request_id = cur.fetchone()[0]
         cur.execute("""SELECT DISTINCT l.id AS id FROM quickschemas.locations l WHERE l.time BETWEEN %s - (20 * interval '1 minute') AND %s
                                               AND ST_DWithin(l.pt, ST_SetSRID(ST_Point(%s, %s),4326)::geography, 250)
-                                              AND l.id!=%s""", (t, t, fromlon, fromlat, requester))
+                                              AND l.id!=%s
+                                              AND %s < %s""", (t, t, fromlon, fromlat, requester, tolat, fromlat))
         for dev_id in cur.fetchall():
             # cur.execute("""SELECT COUNT(l2.id) FILTER (WHERE ST_DWithin(l2.pt, ST_SetSRID(ST_Point(%s, %s),4326)::geography, 250)
             #                                           AND to_char(l.time, 'DD:MM:YY')=to_char(l2.time, 'DD:MM:YY')), COUNT(l.id)
@@ -126,6 +127,7 @@ class Request(Resource):
         request_id = data['id']
         accepter = data['accepter']
         cur.execute("""UPDATE quickschemas.requests SET accepter=%s WHERE id=%s""", (accepter, request_id))
+        conn.commit()
         push_data = {'id':request_id, 'notification_type':1, 'accepter':accepter}
         cur.execute("SELECT p.name, p.phone FROM quickschemas.profiles p WHERE p.id=%s", (accepter, ))
         (push_data['name'], push_data['phone']) = cur.fetchone()

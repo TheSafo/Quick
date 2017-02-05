@@ -68,6 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //If app was running in foreground, didReceiveRemoteNotification will be called
     //If app was in bg and user taps notification, didReceiveRemoteNotification is called
     
+    //Notification Types:
+    //1 is when someone claims your order
+    //Dictionary Keys: name, phone, id, notification_type
+    //2 is an alert for when a placed order would be optimal for you
+    
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Got a notification: ", response)

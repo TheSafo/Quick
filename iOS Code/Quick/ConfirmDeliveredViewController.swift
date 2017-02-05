@@ -126,6 +126,7 @@ class ConfirmDeliveredViewController: UIViewController {
     
     func confirmBtnPressed() {
         print("ORDER DEALT WITH")
+        OrderManagement.sharedInstance.receivedDelivery(receivedOrder: self.order)
         let _ = self.navigationController?.popViewController(animated: true)
     }
 }

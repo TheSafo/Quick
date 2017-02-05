@@ -156,7 +156,8 @@ class ConfirmPickedUpViewController: UIViewController {
     
     func confirmBtnPressed() {
         print("User completed order!")
-        
+        OrderManagement.sharedInstance.completedDelivery(completedOrder: self.order)
+
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

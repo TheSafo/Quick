@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import CoreLocation
+import LocationPicker
 
 class NewOrderViewController: UIViewController {
     
@@ -15,9 +16,21 @@ class NewOrderViewController: UIViewController {
     let priceInput = UITextField()
     let descInput = UITextView()
     let submitBtn = UIButton()
+    let pickupLocBtn = UIButton()
+    
+    let locPicker = LocationPickerViewController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Touch stuff
+            //Looks for single or multiple taps.
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+            
+            //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+            //tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
         
         view.backgroundColor = .yellow
         
@@ -34,7 +47,11 @@ class NewOrderViewController: UIViewController {
         priceInput.placeholder = "Delivery Charge"
         priceInput.keyboardType = .numbersAndPunctuation
         priceInput.returnKeyType = .done
-
+        
+        pickupLocBtn.backgroundColor = .orange
+        pickupLocBtn.setTitle("📍Pickup location", for: .normal)
+        pickupLocBtn.addTarget(self, action: #selector(pickupLocBtnPressed), for: .touchUpInside)
+        
         let 💸lbl = UILabel()
         💸lbl.text = "$"
         💸lbl.textColor = .green
@@ -49,6 +66,7 @@ class NewOrderViewController: UIViewController {
         view.addSubview(descInput)
         view.addSubview(💸lbl)
         view.addSubview(submitBtn)
+        view.addSubview(pickupLocBtn)
         
         //Constrain
         blurbInput.snp.makeConstraints { (make) in
@@ -70,10 +88,15 @@ class NewOrderViewController: UIViewController {
         descInput.snp.makeConstraints { (make) in
             make.top.equalTo(priceInput.snp.bottom).offset(20)
             make.centerX.width.equalTo(blurbInput)
-            make.height.equalTo(300)
+            make.height.equalTo(150)
+        }
+        pickupLocBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(descInput.snp.bottom).offset(20)
+            make.width.centerX.equalTo(blurbInput)
+            make.height.equalTo(50)
         }
         submitBtn.snp.makeConstraints { (make) in
-            make.top.equalTo(descInput.snp.bottom).offset(20)
+            make.top.equalTo(pickupLocBtn.snp.bottom).offset(20)
             make.width.centerX.equalTo(blurbInput)
             make.height.equalTo(50)
         }
@@ -81,7 +104,19 @@ class NewOrderViewController: UIViewController {
 //        blurbInput.layer.borderWidth = 1; blurbInput.layer.borderColor = UIColor.red.cgColor
 //        priceInput.layer.borderWidth = 1; priceInput.layer.borderColor = UIColor.blue.cgColor
         descInput.layer.borderWidth = 1; descInput.layer.borderColor = UIColor.green.cgColor
+        
+        setUpPicker()
 
+    }
+    
+    func setUpPicker() {
+//        if let curLoc = CurrentLocation.sharedInstance.currentLocation {
+//            locPicker.location = Location(name: "Current Location", location: <#T##CLLocation?#>, placemark: <#T##CLPlacemark#>)
+//        }
+        locPicker.completion = { location in
+            print("LOCATION: \(location?.name)")
+        }
+        
     }
     
     func submitPressed() {
@@ -97,6 +132,16 @@ class NewOrderViewController: UIViewController {
         return true
     }
 
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+        self.resignFirstResponder()
+    }
+    
+    func pickupLocBtnPressed() {
+        self.navigationController?.pushViewController(locPicker, animated: true)
+    }
 }
 
 extension NewOrderViewController : UITextFieldDelegate, UITextViewDelegate {
@@ -117,6 +162,6 @@ extension NewOrderViewController : UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        return false
     }
 }

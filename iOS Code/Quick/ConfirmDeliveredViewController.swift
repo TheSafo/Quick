@@ -30,10 +30,16 @@ class ConfirmDeliveredViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Order Details"
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
+
+        self.title = "My Order Details"
         
         view.backgroundColor = .raceRed()
         

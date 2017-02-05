@@ -38,6 +38,8 @@ class OrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
+
         self.title = "Order Details"
         
         view.backgroundColor = .raceRed()
@@ -151,6 +153,10 @@ class OrderDetailsViewController: UIViewController {
                 make.bottom.right.equalTo(vw).offset(3)
             })
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
     }
 
     func confirmBtnPressed() {

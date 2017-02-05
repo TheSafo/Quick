@@ -38,10 +38,17 @@ class ConfirmPickedUpViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
+        self.navigationController?.backg
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Order Details"
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
+
+        self.title = "Claimed Order Details"
         
         view.backgroundColor = .raceRed()
         

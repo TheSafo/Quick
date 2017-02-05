@@ -29,6 +29,8 @@ class NewOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
+        
         self.title = "Order Form"
         
         //Touch stuff
@@ -232,6 +234,10 @@ class NewOrderViewController: UIViewController {
         pickingUp = false
         
         self.navigationController?.pushViewController(locPicker, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationItem.backBarButtonItem?.tintColor = .raceRed()
     }
 }
 

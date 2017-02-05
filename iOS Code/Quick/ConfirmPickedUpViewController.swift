@@ -57,6 +57,7 @@ class ConfirmPickedUpViewController: UIViewController {
         
         ordererNumberLbl.isEditable = false
         ordererNumberLbl.dataDetectorTypes = .all
+        delivererNumberLbl.isSelectable = true
         
         confirmBtn.setTitle("Complete This Delivery", for: .normal)
         confirmBtn.setTitleColor(.black, for: .normal)
